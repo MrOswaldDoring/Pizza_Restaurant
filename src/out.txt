@@ -1,0 +1,1206 @@
+package asgn2Customers;
+
+import asgn2Exceptions.CustomerException;
+
+/** An abstract class to represent a customer at the Pizza Palace restaurant.
+ *  The Customer class is used as a base class of PickUpCustomer, 
+ *  DriverDeliveryCustomer and DroneDeliverCustomer. Each of these subclasses overwrites
+ *  the abstract method getDeliveryDistance. A description of the class's
+ * fields and their constraints is provided in Section 5.2 of the Assignment Specification.  
+ * 
+ * @author Person B
+*/
+public abstract class Customer {
+
+
+	/**
+	 *  This class represents a customer of the Pizza Palace restaurant.  A detailed description of the class's fields
+	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.2. 
+	 *  A CustomerException is thrown if the any of the constraints listed in Section 5.2 of the Assignment Specification
+	 *  are violated. 
+	 *  
+  	 * <P> PRE: True
+  	 * <P> POST: All field values are set
+  	 * 
+	 * @param name - The Customer's name 
+	 * @param mobileNumber - The customer mobile number
+	 * @param locationX - The customer x location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @param locationY - The customer y location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @param type - A human understandable description of this Customer type
+	 * @throws CustomerException if supplied parameters are invalid 
+	 * 
+	 */
+	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
+		// TO DO
+	}
+	
+	/**
+	 * Returns the Customer's name.
+	 * @return The Customer's name.
+	 */
+	public final String getName(){
+		// TO DO
+	}
+	
+	/**
+	 * Returns the Customer's mobile number.
+	 * @return The Customer's mobile number.
+	 */
+	public final String getMobileNumber(){
+		// TO DO
+	}
+
+	/**
+	 * Returns a human understandable description of the Customer's type. 
+	 * The valid alternatives are listed in Section 5.2 of the Assignment Specification. 
+	 * @return A human understandable description of the Customer's type.
+	 */
+	public final String getCustomerType(){
+		// TO DO
+	}
+	
+	/**
+	 * Returns the Customer's X location which is the number of blocks East or West 
+	 * that the Customer is located relative to the Pizza Palace restaurant. 
+	 * @return The Customer's X location
+	 */
+	public final int getLocationX(){
+		// TO DO
+	}
+
+	/**
+	 * Returns the Customer's Y location which is the number of blocks North or South 
+	 * that the Customer is located relative to the Pizza Palace restaurant. 
+	 * @return The Customer's Y location
+	 */
+	public final int getLocationY(){
+		// TO DO
+	}
+
+	/**
+	 * An abstract method that returns the distance between the Customer and 
+	 * the restaurant depending on the mode of delivery. 
+	 * @return The distance between the restaurant and the Customer depending on the mode of delivery.
+	 */
+	public abstract double getDeliveryDistance();
+
+	
+	
+	/**
+	 * Compares *this* Customer object with an instance of an *other* Customer object and returns true if  
+	 * if the two objects are equivalent, that is, if the values exposed by public methods are equal.
+	 *  You do not need to test this method.
+	 * 
+	 * @return true if *this* Customer object and the *other* Customer object have the same values returned for 	
+	 * getName(),getMobileNumber(),getLocationX(),getLocationY(),getCustomerType().
+	 */
+	@Override
+	public boolean equals(Object other){
+		Customer otherCustomer = (Customer) other;
+
+		return ( (this.getName().equals(otherCustomer.getName()))  &&
+			(this.getMobileNumber().equals(otherCustomer.getMobileNumber())) && 
+			(this.getLocationX() == otherCustomer.getLocationX()) && 
+			(this.getLocationY() == otherCustomer.getLocationY()) && 
+			(this.getCustomerType().equals(otherCustomer.getCustomerType())) );			
+	}
+
+}
+package asgn2Customers;
+
+
+import asgn2Exceptions.CustomerException;
+
+/**
+ * A class that instantiates the subclasses of asgn2Customers.Customer using the Factory Method pattern. 
+ * The classes are instantiated from one of the three valid customer codes outlined in
+ * Section 5.3 of the Assignment Specification. Any other code will throw a CustomerException.   
+ *     
+ * @author Person B
+ *
+ */
+
+public class CustomerFactory {
+
+	/**
+	 * A method that uses the Factory Method pattern to produce an instance of one of the asgn2Customers.Customer subclasses. 
+	 * Subclasses are created using the customerCode. All valid customer codes are listed in Section 5.3 of the Assignment Specification.
+	 * A CustomerException should be thrown if an invalid customer code is used as a parameter. 
+	 * 
+	 * @param customerCode - A code indicating the subclass of asgn2Customers.Customer to instantiate. The valid codes are listed in Section 5.3 of the Assignment Specification. 
+	 * @param name - The customer's name 
+	 * @param mobileNumber - The customer mobile number
+	 * @param locationX - The customer x location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @param locationY  The customer y location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @return A valid PickUpCustomer, DriverDeliveryCustomer or DroneDeliveryCustomer depending on the customerCode.
+	 * @throws CustomerException if the customerCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
+	 */
+	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
+		// TO DO
+	}
+}
+package asgn2Customers;
+
+import asgn2Exceptions.CustomerException;
+
+/** A class that represents a customer that has chosen to have their pizza delivered by a driver. 
+ * This class extends the abstract Customer class and calculates the delivery distance as the Manhattan  
+ * Distance between the customer and the restaurant. A description of the class's
+ * fields and their constraints is provided in Section 5.2 of the Assignment Specification.
+ * 
+ * @author Person B
+ *
+ */
+public class DriverDeliveryCustomer extends Customer {
+
+	/**
+	 *  This class represents a customer of the Pizza Palace restaurant that has chosen to have their pizza delivered by 
+	 *  a driver.  A CustomerException is thrown if the any of the constraints listed in Section 5.2 of the Assignment
+	 *  Specification are violated. 
+     *
+     *  <P>PRE: TRUE
+ 	 *  <P>POST: All field values are set
+	 *  
+	 * @param name - The Customer's name 
+	 * @param mobileNumber - The customer mobile number
+	 * @param locationX - The customer x location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @param locationY -  The customer y location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @throws CustomerException if supplied parameters are invalid
+	 * 
+	 */
+	public DriverDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
+		// TO DO
+	}
+	
+	/**
+	 * Returns the Manhattan Distance between the instance of DriverDeliveryCustomer and the restaurant. Overrides  
+	 * getDeliveryDistance() in Customer.
+	 * 
+	 * @return The distance between the restaurant and the customer in Manhattan distance.
+	 */
+	@Override
+	public double getDeliveryDistance() {	}
+
+}
+package asgn2Customers;
+
+import asgn2Exceptions.CustomerException;
+
+/** A class that represents a customer that has chosen to have their pizza delivered by a drone. 
+ * This class extends the abstract Customer class and calculates the delivery distance as the Euclidean 
+ * Distance between the customer and the restaurant.  A description of the class's
+ * fields and their constraints is provided in Section 5.2 of the Assignment Specification.
+ * 
+ * @author PersonB
+ *
+ */
+public class DroneDeliveryCustomer extends Customer {
+
+
+	/**
+	 *  This class represents a customer of the Pizza Palace restaurant that has chosen to have their pizza delivered by 
+	 *  a drone.  A CustomerException is thrown if the any of the constraints listed in Section 5.2 of the Assignment
+	 *  Specification are violated. 
+     *
+     * <P> PRE: TRUE
+     * <P> POST: All field values are set
+     *
+	 * @param name - The Customer's name 
+	 * @param mobileNumber - The customer mobile number
+	 * @param locationX - The customer x location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @param locationY  The customer y location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @throws CustomerException if supplied parameters are invalid
+	 * 
+	 */
+	public DroneDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
+		// TO DO		
+	}
+
+	/**
+	 * Returns the Euclidean Distance between the instance of DroneDeliveryCustomer and the restaurant. Overrides  
+	 * getDeliveryDistance() in Customer.
+	 * 
+     * @return The distance between the restaurant and the customer in Euclidean distance.
+	 */
+	@Override
+	public double getDeliveryDistance() {
+		// TO DO
+
+	}
+	
+
+}
+/**
+*  This package contains classes that represent customers at the restaurant as well as a class that creates those classes using the factory method pattern. 
+*  There are three types of customers (described in Section 5.2 in the Assignment Specification) represented by three concrete classes 
+*  which inherit from a single abstract Customer class. This package is detailed in Section 7.1 of the Assignment Specification.
+*  
+ * @author Person B
+ *
+ */
+package asgn2Customers;package asgn2Customers;
+
+import asgn2Exceptions.CustomerException;
+
+/** A class that represents a customer that has chosen to collect their pizza at the restaurant. 
+ *  This class extends the abstract Customer class. Since the customer is at the restaurant the delivery 
+ *  distance should be zero.  A description of the class's fields and their constraints is provided 
+ *  in Section 5.2 of the Assignment Specification.
+ *
+ * @author Person B
+ *
+ */
+public class PickUpCustomer extends Customer {
+
+	/**
+	 *  This class represents a customer of the Pizza Palace restaurant that has chosen to pickup their pizza at the restaurant. 
+	 *  A CustomerException is thrown if the any of the constraints listed in Section 5.2 of the Assignment Specification are violated. 
+	 *  
+	 * <P> PRE: TRUE
+ 	 * <P> POST: All field values are set
+	 *  
+	 * @param name - The Customer's name 
+	 * @param mobileNumber - The customer mobile number
+	 * @param locationX - The customer x location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @param locationY  The customer y location relative to the Pizza Palace Restaurant measured in units of 'blocks' 
+	 * @throws CustomerException if supplied parameters are invalid
+	 * 
+	 */
+	public PickUpCustomer(String name, String mobileNumber, int locationX,  int locationY) throws CustomerException {
+		// TO DO	
+	}
+
+	/**
+	 *  Overrides DeliveryDistance() in Customer. Since the customer is at the restaurant the delivery distance should be zero. 
+	 *  
+     * @return The value 0
+	 */
+	@Override
+	public double getDeliveryDistance() {
+		// TO DO
+	}
+
+}
+package asgn2Exceptions;
+
+/**
+ * A class that represents exceptions related to the construction and handling of Customer objects.
+ * @author Alan Woodley
+ *
+ */
+public class CustomerException extends Exception {
+
+	/**
+	 * Produces a CustomerException
+	 */
+	public CustomerException() {
+	}
+
+	/**
+	 * Produces a CustomerException with the specified message
+	 * @param message - The exception's message
+	 */
+	public CustomerException(String message) {
+		super(message);
+	}
+
+	/**
+	 * Produces a CustomerException with the specified cause
+	 * @param cause - The exception's cause
+	 */
+	public CustomerException(Throwable cause) {
+		super(cause);
+	}
+
+	/**
+	 * Produces a CustomerException with the specified message and cause
+	 * @param cause - The exception's cause
+ 	 * @param message - The exception's message
+	 */
+	public CustomerException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	/**
+	 * Produces a CustomerException with the specified message, cause and flags to enable suppression and make the stack trace writable
+	 * @param cause - The exception's cause
+ 	 * @param message - The exception's message
+ 	 * @param enableSuppression - A flag to indicate if suppression should be enabled or disabled
+ 	 * @param writableStackTrace - A flag to indicate if the stacktrace should be writable or not
+	 */
+	public CustomerException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+}
+package asgn2Exceptions;
+
+/**
+ * A class that represents exceptions related to reading in the log file
+ * such as incorrect format or exceptions related to input/output.
+ */
+public class LogHandlerException extends Exception {
+
+	/**
+	 * Produces a LogHandlerException
+	 */
+	public LogHandlerException() {
+	}
+
+	/**
+	 * Produces a LogHandlerException with the specified message
+	 * @param message - The exception's message
+	 */
+	public LogHandlerException(String message) {
+		super(message);
+	}
+
+	/**
+	 * Produces a LogHandlerException with the specified cause
+	 * @param cause - The exception's cause
+	 */
+	public LogHandlerException(Throwable cause) {
+		super(cause);
+	}
+
+	/**
+	 * Produces a LogHandlerException with the specified message and cause
+	 * @param cause - The exception's cause
+ 	 * @param message - The exception's message
+	 */
+	public LogHandlerException(String message, Throwable cause) {
+		super(message, cause);
+	}
+
+	/**
+	 * Produces a LogHandlerException with the specified message and cause and flags to enable suppression and make the stack trace writable
+	 * @param cause - The exception's cause
+ 	 * @param message - The exception's message
+ 	 * @param enableSuppression - A flag to indicate if suppression should be enabled or disabled
+ 	 * @param writableStackTrace - A flag to indicate if the stacktrace should be writable or not    
+	 */	
+	public LogHandlerException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+	
+	
+}
+
+/**
+ * This package contains classes to represent different types of exceptions. You do not need to modify or test any of the classes in this package. 
+ * @author Alan Woodley
+ *
+ */
+package asgn2Exceptions;package asgn2Exceptions;
+
+/**
+ * A class that represents exceptions related to the construction and handling of Pizza objects.
+ * @author Alan Woodley
+ *
+ */
+public class PizzaException extends Exception {
+
+	/**
+	 * Produces a PizzaException
+	 */
+	public PizzaException() {
+	}
+
+	/**
+	 * Produces a PizzaException with the specified message
+	 * @param message - The exception's message
+	 */
+	public PizzaException(String message) {
+		super(message);
+	}
+
+	/**
+	 * Produces a PizzaException with the specified cause
+     * @param cause - The exception's cause
+	 */
+	public PizzaException(Throwable cause) {
+		super(cause);
+	}
+
+	/**
+	 * Produces a PizzaException with the specified message and cause
+     * @param cause - The exception's cause
+	 * @param message - The exception's message
+	 */
+	public PizzaException(String message, Throwable cause) {
+		super(message, cause);
+	}
+	
+	/**
+	 * Produces a PizzaException with the specified message and cause and flags to enable suppression and make the stack trace writable
+     * @param cause - The exception's cause
+	 * @param message - The exception's message
+	 * @param enableSuppression - A flag to indicate if suppression should be enabled or disabled
+	 * @param writableStackTrace - A flag to indicate if the stacktrace should be writable or not    
+	 */
+	public PizzaException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+		super(message, cause, enableSuppression, writableStackTrace);
+	}
+
+}
+
+
+
+
+
+
+/**
+ * This package contains the GUI which can be used to interact with the rest of the system. 
+ * 
+ * @author Person A and Person B
+ *
+ */
+package asgn2GUIs;package asgn2GUIs;
+
+import java.awt.event.ActionEvent;
+
+
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.text.DecimalFormat;
+
+import javax.swing.JPanel;
+import javax.swing.text.DefaultCaret;
+
+import asgn2Customers.Customer;
+import asgn2Pizzas.Pizza;
+import asgn2Restaurant.PizzaRestaurant;
+
+import javax.swing.JFrame;
+
+import java.awt.*;
+import javax.swing.*;
+
+
+/**
+ * This class is the graphical user interface for the rest of the system. 
+ * Currently it is a ‘dummy’ class which extends JFrame and implements Runnable and ActionLister. 
+ * It should contain an instance of an asgn2Restaurant.PizzaRestaurant object which you can use to 
+ * interact with the rest of the system. You may choose to implement this class as you like, including changing 
+ * its class signature – as long as it  maintains its core responsibility of acting as a GUI for the rest of the system. 
+ * You can also use this class and asgn2Wizards.PizzaWizard to test your system as a whole
+ * 
+ * 
+ * @author Person A and Person B
+ *
+ */
+public class PizzaGUI extends javax.swing.JFrame implements Runnable, ActionListener {
+	
+	
+	private PizzaRestaurant restaurant;
+	
+	/**
+	 * Creates a new Pizza GUI with the specified title 
+	 * @param title - The title for the supertype JFrame
+	 */
+	public PizzaGUI(String title) {
+		// TO DO
+	}
+
+	
+	@Override
+	public void run() {
+		// TO DO
+	}
+
+	
+
+}
+package asgn2Pizzas;
+
+import java.time.LocalTime;
+
+import asgn2Exceptions.PizzaException;
+
+
+
+/**
+ * 
+ *  A class that represents a margherita pizza made at the Pizza Palace restaurant. 
+ *  The margherita pizza has certain toppings listed in Section 5.1 of the Assignment Specification Document.  
+ *  A description of the class's fields and their constraints is provided in Section 5.1 of the Assignment Specification.
+ * 
+ * @author Person A
+ *
+ */
+public class MargheritaPizza extends Pizza {
+
+	
+	/**
+	 * 
+	 *  This class represents a margherita pizza made at the  Pizza Palace restaurant.   The margherita pizza has certain
+	 *  toppings listed in Section 5.1 of the Assignment Specification Document.  A description of the class's
+	 *  fields and their constraints is provided in Section 5.1 of the Assignment Specification.
+	 *  A PizzaException is thrown if the any of the constraints listed in Section 5.1 of the Assignment Specification are violated. 
+	 * 
+	 * <P>PRE: TRUE
+	 * <P>POST: All field values including the cost per pizza are set
+     *
+	 * @param quantity - The number of pizzas ordered 
+	 * @param orderTime - The time that the pizza order was made and sent to the kitchen 
+	 * @param deliveryTime - The time that the pizza was delivered to the customer
+	 * @throws PizzaException if supplied parameters are invalid 
+	 *
+	 */
+	public MargheritaPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
+		// TO DO
+	}
+
+}
+package asgn2Pizzas;
+
+import java.time.LocalTime;
+
+import asgn2Exceptions.PizzaException;
+
+/**
+ * 
+ *  A class that represents a meat lovers pizza made at the Pizza Palace restaurant. 
+ *  The meat lovers pizza has certain toppings listed in Section 5.1 of the Assignment Specification Document.  
+ *  A description of the class's fields and their constraints is provided in Section 5.1 of the Assignment Specification.
+ * 
+ * @author PersonA
+ *
+ */
+public class MeatLoversPizza extends Pizza {
+
+	/**
+	 * 
+	 *  This class represents a meat lovers pizza made at the  Pizza Palace restaurant. The meat lovers pizza has certain
+	 *  toppings listed in Section 5.1 of the Assignment Specification Document.  A description of the class's
+	 *  fields and their constraints is provided in Section 5.1 of the Assignment Specification.
+	 *  A PizzaException is thrown if the any of the constraints listed in Section 5.1 of the Assignment Specification are violated. 
+	 * 
+ 	 * <P> PRE: TRUE
+ 	 * <P> POST: All field values including the cost per pizza are set
+     *
+	 * @param quantity - The number of pizzas ordered 
+	 * @param orderTime - The time that the pizza order was made and sent to the kitchen 
+	 * @param deliveryTime - The time that the pizza was delivered to the customer
+	 * @throws PizzaException if supplied parameters are invalid 
+	 *
+	 */
+	public MeatLoversPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
+		// TO DO
+	}
+
+}
+
+/**
+ * This package contains classes that represent customers at the restaurant as well as a class that creates those classes using the factory method pattern.
+ * There are three types of customers (described in Section 5.2 of the Assignment Specification) represented by three concrete classes which inherit 
+ * from a single abstract Customer class. This package is detailed in Section 7.1 of the Assignment Specification.
+ *  
+ * @author PersonA
+ *
+ */
+package asgn2Pizzas;package asgn2Pizzas;
+
+import java.time.LocalTime;
+
+
+/**
+ * An abstract class that represents pizzas sold at the Pizza Palace restaurant. 
+ * The Pizza class is used as a base class of VegetarianPizza, MargheritaPizza and MeatLoversPizza. 
+ * Each of these subclasses have a different set of toppings. A description of the class's fields
+ * and their constraints is provided in Section 5.1 of the Assignment Specification. 
+ * 
+ * @author Person A
+ *
+ */
+public abstract class Pizza  {
+
+	
+	/**
+	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
+	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.1. 
+	 *  A PizzaException is thrown if the any of the constraints listed in Section 5.1 of the Assignment Specification
+	 *  are violated. 
+     *
+     *  PRE: TRUE
+	 *  POST: All field values except cost per pizza are set
+	 * 
+	 * @param quantity - The number of pizzas ordered 
+	 * @param orderTime - The time that the pizza order was made and sent to the kitchen 
+	 * @param deliveryTime - The time that the pizza was delivered to the customer
+	 * @param type -  A human understandable description of this Pizza type
+	 * @param price - The price that the pizza is sold to the customer
+	 * @throws PizzaException if supplied parameters are invalid 
+	 * 
+	 */
+	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
+		// TO DO	
+	}
+
+	/**
+	 * Calculates how much a pizza would could to make calculated from its toppings.
+	 *  
+     * <P> PRE: TRUE
+	 * <P> POST: The cost field is set to sum of the Pizzas's toppings
+	 */
+	public final void calculateCostPerPizza(){
+		// TO DO
+	}
+	
+	/**
+	 * Returns the amount that an individual pizza costs to make.
+	 * @return The amount that an individual pizza costs to make.
+	 */
+	public final double getCostPerPizza(){
+		// TO DO
+	}
+
+	/**
+	 * Returns the amount that an individual pizza is sold to the customer.
+	 * @return The amount that an individual pizza is sold to the customer.
+	 */
+	public final double getPricePerPizza(){
+		// TO DO
+	}
+
+	/**
+	 * Returns the amount that the entire order costs to make, taking into account the type and quantity of pizzas. 
+	 * @return The amount that the entire order costs to make, taking into account the type and quantity of pizzas. 
+	 */
+	public final double getOrderCost(){
+		// TO DO
+	}
+	
+	/**
+	 * Returns the amount that the entire order is sold to the customer, taking into account the type and quantity of pizzas. 
+	 * @return The amount that the entire order is sold to the customer, taking into account the type and quantity of pizzas. 
+	 */
+	public final double getOrderPrice(){
+		// TO DO
+	}
+	
+	
+	/**
+	 * Returns the profit made by the restaurant on the order which is the order price minus the order cost. 
+	 * @return  Returns the profit made by the restaurant on the order which is the order price minus the order cost.
+	 */
+	public final double getOrderProfit(){
+		// TO DO
+	}
+	
+
+	/**
+	 * Indicates if the pizza contains the specified pizza topping or not. 
+	 * @param topping -  A topping as specified in the enumeration PizzaTopping
+	 * @return Returns  true if the instance of Pizza contains the specified topping and false otherwise.
+	 */
+	public final boolean containsTopping(PizzaTopping topping){
+		// TO DO
+	}
+	
+	/**
+	 * Returns the quantity of pizzas ordered. 
+	 * @return the quantity of pizzas ordered. 
+	 */
+	public final int getQuantity(){
+		// TO DO
+	}
+
+	/**
+	 * Returns a human understandable description of the Pizza's type. 
+	 * The valid alternatives are listed in Section 5.1 of the Assignment Specification. 
+	 * @return A human understandable description of the Pizza's type.
+	 */
+	public final String getPizzaType(){
+		// TO DO
+	}
+
+
+	/**
+	 * Compares *this* Pizza object with an instance of an *other* Pizza object and returns true if  
+	 * if the two objects are equivalent, that is, if the values exposed by public methods are equal.
+	 * You do not need to test this method.
+	 *  
+	 * @return true if *this* Pizza object and the *other* Pizza object have the same values returned for 	
+	 * getCostPerPizza(), getOrderCost(), getOrderPrice(), getOrderProfit(), getPizzaType(), getPricePerPizza() 
+	 * and getQuantity().
+	 *   
+	 */
+	@Override
+	public boolean equals(Object other){
+		Pizza otherPizza = (Pizza) other;
+		return ((this.getCostPerPizza()) == (otherPizza.getCostPerPizza()) &&
+			(this.getOrderCost()) == (otherPizza.getOrderCost())) &&				
+			(this.getOrderPrice()) == (otherPizza.getOrderPrice()) &&
+			(this.getOrderProfit()) == (otherPizza.getOrderProfit()) &&
+			(this.getPizzaType() == (otherPizza.getPizzaType()) &&
+			(this.getPricePerPizza()) == (otherPizza.getPricePerPizza()) &&
+			(this.getQuantity()) == (otherPizza.getQuantity()));
+	}
+
+	
+}
+package asgn2Pizzas;
+
+import java.time.LocalTime;
+
+import asgn2Exceptions.PizzaException;
+
+/**
+ * A class that instantiates the subclasses of asgn2Pizzas.Pizza using the Factory Method pattern. 
+ * The classes are instantiated from one of the three valid pizza codes outlined in
+ * Section 5.3 of the Assignment Specification. Any other code will throw a PizzaException.      
+ *  
+ * @author Person A
+ *
+ */
+
+public class PizzaFactory {
+
+
+	/**
+	 * A method that uses the Factory Method pattern to produce an instance of one of the asgn2Pizzas.Pizza subclasses. 
+	 * Subclasses are created using the pizzaCode. All valid pizza codes are listed in Section 5.3 of the Assignment Specification.
+	 * A PizzaException should be thrown if an invalid pizza code is used as a parameter. 
+	 * 
+	 * @param pizzaCode - A code indicating the subclass of asgn2Pizzas.Pizza to instantiate. The valid codes are listed in Section 5.3 of the Assignment Specification. 
+	 * @param quantity - The number of pizzas ordered 
+	 * @param orderTime - The time that the pizza order was made and sent to the kitchen 
+	 * @param deliveryTime - The time that the pizza was delivered to the customer
+	 * @throws PizzaException if the pizzaCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
+	 * @return A valid Pizza object using the specified parameters 
+	 * */
+	public static Pizza getPizza(String pizzaCode, int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException{
+		// TO DO
+	}
+
+}
+package asgn2Pizzas;
+
+/**
+ * An enumeration that contains a set of pizza toppings and their associated cost.
+ * It also contains a method to retrieve a cost for a specific topping. The toppings
+ * and their costs are specified in the Assignment Specification in Section 5.1. 
+ * 
+ * @author Alan Woodley
+ *
+ */
+public enum PizzaTopping {
+	
+	CHEESE(1),
+	TOMATO(0.5),
+	BACON(1.5),
+	SALAMI(1), 
+	PEPPERONI(1),
+	CAPSICUM(1.2),
+	MUSHROOM(2),
+	EGGPLANT(0.8); 
+	
+	private double cost;
+	
+	/**
+	 * A enumeration that represents a pizza topping 
+	 * @param cost the cost of the pizza topping
+	 */
+	PizzaTopping(double cost){
+		this.cost = cost;
+	}
+
+	/**
+	 * Returns the cost of a topping
+	 * @return the cost of the selected topping
+	 */
+	public double getCost(){
+		return cost;
+	}
+	
+
+}
+package asgn2Pizzas;
+
+import java.time.LocalTime;
+
+import asgn2Exceptions.PizzaException;
+
+
+/**
+ * 
+ *  A class that represents a vegetarian pizza made at the Pizza Palace restaurant. 
+ *  The vegetarian pizza has certain toppings listed in Section 5.1 of the Assignment Specification Document.  
+ *  A description of the class's fields and their constraints is provided in Section 5.1 of the Assignment Specification.
+ * 
+ * @author PersonA
+ *
+ */
+public class VegetarianPizza extends Pizza {
+
+	/**
+	 * 
+	 *  This class represents a vegetarian pizza made at the  Pizza Palace restaurant. The vegetarian pizza has certain
+	 *  toppings listed in Section 5.1 of the Assignment Specification Document.  A description of the class's
+	 *  fields and their constraints is provided in Section 5.1 of the Assignment Specification.
+	 *  A PizzaException is thrown if the any of the constraints listed in Section 5.1 of the Assignment Specification are violated. 
+	 * 
+     * <P> PRE: TRUE
+	 * <P> POST: All field values including the cost per pizza are set
+	 * @param quantity - The number of pizzas ordered 
+	 * @param orderTime - The time that the pizza order was made and sent to the kitchen 
+	 * @param deliveryTime - The time that the pizza was delivered to the customer
+	 * @throws PizzaException if supplied parameters are invalid 
+	 *
+	 */
+	public VegetarianPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
+		// TO DO
+	}
+
+}
+package asgn2Restaurant;
+
+
+import java.util.ArrayList;
+import asgn2Customers.Customer;
+import asgn2Exceptions.CustomerException;
+import asgn2Exceptions.LogHandlerException;
+import asgn2Exceptions.PizzaException;
+import asgn2Pizzas.Pizza;
+
+/**
+ *
+ * A class that contains methods that use the information in the log file to return Pizza 
+ * and Customer object - either as an individual Pizza/Customer object or as an
+ * ArrayList of Pizza/Customer objects.
+ * 
+ * @author Person A and Person B
+ *
+ */
+public class LogHandler {
+	
+
+
+	/**
+	 * Returns an ArrayList of Customer objects from the information contained in the log file ordered as they appear in the log file.
+	 * @param filename The file name of the log file
+	 * @return an ArrayList of Customer objects from the information contained in the log file ordered as they appear in the log file. 
+	 * @throws CustomerException If the log file contains semantic errors leading that violate the customer constraints listed in Section 5.3 of the Assignment Specification or contain an invalid customer code (passed by another class).
+	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above
+	 * 
+	 */
+	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
+		// TO DO
+	}		
+
+	/**
+	 * Returns an ArrayList of Pizza objects from the information contained in the log file ordered as they appear in the log file. .
+	 * @param filename The file name of the log file
+	 * @return an ArrayList of Pizza objects from the information contained in the log file ordered as they appear in the log file. .
+	 * @throws PizzaException If the log file contains semantic errors leading that violate the pizza constraints listed in Section 5.3 of the Assignment Specification or contain an invalid pizza code (passed by another class).
+	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above
+	 * 
+	 */
+	public static ArrayList<Pizza> populatePizzaDataset(String filename) throws PizzaException, LogHandlerException{
+		// TO DO
+	}		
+
+	
+	/**
+	 * Creates a Customer object by parsing the  information contained in a single line of the log file. The format of 
+	 * each line is outlined in Section 5.3 of the Assignment Specification.  
+	 * @param line - A line from the log file
+	 * @return- A Customer object containing the information from the line in the log file
+	 * @throws CustomerException - If the log file contains semantic errors leading that violate the customer constraints listed in Section 5.3 of the Assignment Specification or contain an invalid customer code (passed by another class).
+	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
+	 */
+	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
+		// TO DO
+	}
+	
+	/**
+	 * Creates a Pizza object by parsing the information contained in a single line of the log file. The format of 
+	 * each line is outlined in Section 5.3 of the Assignment Specification.  
+	 * @param line - A line from the log file
+	 * @return- A Pizza object containing the information from the line in the log file
+	 * @throws PizzaException If the log file contains semantic errors leading that violate the pizza constraints listed in Section 5.3 of the Assignment Specification or contain an invalid pizza code (passed by another class).
+	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
+	 */
+	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
+		// TO DO		
+	}
+
+}
+/**
+ * This package contains classes that act as a bridge between the GUI, 
+ * the log files and the classes in the asgn2Customers and the asgn2Pizzas packages. 
+ *  
+ * @author Person A and Person B
+ *
+ */
+package asgn2Restaurant;package asgn2Restaurant;
+
+import java.util.ArrayList;
+
+import asgn2Customers.Customer;
+import asgn2Pizzas.Pizza;
+
+/**
+ * This class acts as a ‘model’ of a pizza restaurant. It contains an ArrayList of Pizza objects and an ArrayList of  Customer objects.
+ *  It contains a method that can populate the ArrayLists,  several methods to retrieve information about the ArrayLists and 
+ *  a method to reset the array list. Information about the x and y location of the restaurant and the time that first and last 
+ *  orders are accepted are listed in Section 5 of the Assignment Specification. 
+ *  
+ *  Any exceptions raised by one of the methods called by this class should be passed to asgn2GUIs.PizzaGUI so that it can be shown to
+ *  the user.
+ * 
+ * @author Person A and Person B
+ *
+ */
+public class PizzaRestaurant {
+
+	private ArrayList<Customer> customers;
+	private ArrayList<Pizza> pizzas;
+
+	
+	/**
+	 * Creates an instance of the PizzaRestaurant and sets the customers and pizzas fields to
+	 * an appropriate initial empty state. 
+	 * 
+	 * <P> PRE: TRUE
+	 * <P> POST: The customers and pizzas fields are initialized to an empty state
+	 * 
+	 */
+	public PizzaRestaurant() {
+		// TO DO
+	}
+
+	/**
+	 * This method processes the information contained in the log file and populates the customers and pizzas fields.  
+	 * The other classes that the method interacts with are listed in Section 11 of the specification document. 
+     *
+     * <P> PRE: TRUE
+     * <P>POST: If no exception is thrown then the customers and pizzas fields are populated with the details in the log file ordered as they appear in teh log file.
+     * <P>      If an exception is thrown then the customers and pizzas fields should be empty.
+     * 
+	 * @param filename The log's filename
+	 * @return true if the file was process correctly otherwise false
+	 * @throws CustomerException If the log file contains semantic errors leading that violate the customer constraints listed in Section 5.3 of the Assignment Specification or contain an invalid customer code (passed by another class).
+	 * @throws PizzaException If the log file contains semantic errors leading that violate the pizza constraints listed in Section 5.3 of the Assignment Specification or contain an invalid pizza code (passed by another class).
+	 * @throws LogHandlerException If there was a problem with the log file not related to the semantic errors above (passed by another class).
+     *
+	 */
+	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
+		// TO DO
+	}
+
+	/**
+	 * Returns the Customer object contained at the specified index of the customers field. The index should be the same as the index in the log file.
+	 * @param index - The index within the customers field to retrieve.
+	 * @return The Customer object located at the specified index.
+	 * @throws CustomerException if index is invalid.
+	 */
+	public Customer getCustomerByIndex(int index) throws CustomerException{
+		// TO DO
+	}
+	
+	/**
+	 * Returns the Pizza object contained at the specified index of the pizzas field. The index should be the same as the index in the log file.
+	 * @param index - The index within the pizzas field to retrieve.
+	 * @return The Pizza object located at the specified index.
+	 * @throws PizzaException if index is invalid.
+	 */	
+	public Pizza getPizzaByIndex(int index) throws PizzaException{
+		// TO DO
+	}
+	
+	/**
+	 * Returns the number of objects contained in the pizzas field. This value SHOULD be the same as 
+	 * the value returned by getNumCustomerOrders.
+	 * 
+	 * @return the number of objects contained in the pizzas field.
+	 */
+	public int getNumPizzaOrders(){
+		// TO DO
+	}
+
+	/**
+	 * Returns the number of objects contained in the customers field. This value SHOULD be the same as 
+	 * the value returned by getNumPizzaOrders.
+	 * 
+	 * @return the number of objects contained in the customers field.
+	 */
+	public int getNumCustomerOrders(){
+		// TO DO
+	}
+
+			
+	
+	/**
+	 * Returns the total delivery distance for all of the customers.
+	 * 
+	 * @return the total delivery distance for all Customers objects in the customers field.
+	 */
+	public double getTotalDeliveryDistance(){
+		// TO DO
+	}
+
+	/**
+	 * Returns the total profit for all of the pizza orders.
+	 * 
+	 * @return the total profit for all of the Pizza objects in the pizzas field.
+	 */	
+	public double getTotalProfit(){
+		// TO DO
+	}
+	
+	/**
+	 * Resets the pizzas and customers fields to their initial empty states.
+	 * 
+	 * <P> PRE: True
+	 * <P> POST:  The pizzas and customers fields are set to their initial empty states
+	 */
+	public void resetDetails(){
+		// TO DO
+	}
+
+}
+package asgn2Tests;
+
+/**
+ * A class the that tests the asgn2Customers.CustomerFactory class.
+ * 
+ * @author Person A
+ *
+ */
+public class CustomerFactoryTests {
+	// TO DO
+}
+package asgn2Tests;
+
+
+/**
+ * A class that tests the that tests the asgn2Customers.PickUpCustomer, asgn2Customers.DriverDeliveryCustomer,
+ * asgn2Customers.DroneDeliveryCustomer classes. Note that an instance of asgn2Customers.DriverDeliveryCustomer 
+ * should be used to test the functionality of the  asgn2Customers.Customer abstract class. 
+ * 
+ * @author Person A
+ * 
+ *
+ */
+public class CustomerTests {
+	// TO DO
+}
+package asgn2Tests;
+
+/**
+ * A class that tests the methods relating to the creation of Customer objects in the asgn2Restaurant.LogHander class.
+ *
+ * @author Person A
+ */
+public class LogHandlerCustomerTests {
+	// TO DO
+}
+package asgn2Tests;
+
+
+/** A class that tests the methods relating to the creation of Pizza objects in the asgn2Restaurant.LogHander class.
+* 
+* @author Person B
+* 
+*/
+public class LogHandlerPizzaTests {
+	// TO DO	
+}
+/**
+ * This package contains the JUnit test classes that test classes in the asgn2Pizzas, asgn2Customers, asgn2Restaurant packages.
+ * 
+ * @author Person A and Person B
+ *
+ */
+package asgn2Tests;package asgn2Tests;
+
+
+/** 
+ * A class that tests the asgn2Pizzas.PizzaFactory class.
+ * 
+ * @author Person B 
+ * 
+ */
+public class PizzaFactoryTests {
+	// TO DO
+}
+package asgn2Tests;
+
+/**
+ * A class that that tests the asgn2Pizzas.MargheritaPizza, asgn2Pizzas.VegetarianPizza, asgn2Pizzas.MeatLoversPizza classes. 
+ * Note that an instance of asgn2Pizzas.MeatLoversPizza should be used to test the functionality of the 
+ * asgn2Pizzas.Pizza abstract class. 
+ * 
+ * @author Person B
+ *
+ */
+public class PizzaTests {
+	// TO DO
+}
+package asgn2Tests;
+
+
+/**
+ * A class that that tests the methods relating to the handling of Customer objects in the asgn2Restaurant.PizzaRestaurant
+ * class as well as processLog and resetDetails.
+ * 
+ * @author Person A
+ */
+public class RestaurantCustomerTests {
+	// TO DO
+}
+package asgn2Tests;
+
+
+/**
+ * A class that tests the methods relating to the handling of Pizza objects in the asgn2Restaurant.PizzaRestaurant class as well as
+ * processLog and resetDetails.
+ * 
+ * @author Person B
+ *
+ */
+public class RestaurantPizzaTests {
+	// TO DO
+}
+/**
+ * This package contains the entry point to the rest of the system
+ *
+ * @author PersonA and PersonB
+ *
+ */
+package asgn2Wizards;package asgn2Wizards;
+
+
+import javax.swing.SwingUtilities;
+
+import asgn2GUIs.PizzaGUI;
+
+/**
+ * This class is the ‘entry point’ to the rest of the system and provides a public static void main method. 
+ * At the moment, this just calls the asgn2GUIs.PizzaGUI class. You can probably leave the class as it is,
+ *  however, you must make sure that it is the one and only entry point to the rest of the system. 
+ *  
+ *  @author Person A and Person B
+ */
+
+public class PizzaWizard {
+
+    /**
+     * Creates an instance of PizzaWizard
+     */
+	public PizzaWizard() {
+	}
+
+	/**
+	 * The entry point to the rest of the system. 
+	 * @param args Command Line Arguments
+	 */
+	public static void main(String[] args) {
+		SwingUtilities.invokeLater(new PizzaGUI("Pizza Place"));		
+		
+	}
+
+}
