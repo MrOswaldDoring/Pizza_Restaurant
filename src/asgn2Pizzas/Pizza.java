@@ -36,7 +36,7 @@ public abstract class Pizza  {
 	}
 
 	/**
-	 * Calculates how much a pizza would could to make calculated from its toppings.
+	 * Calculates how much a pizza would cost to make calculated from its toppings.
 	 *  
      * <P> PRE: TRUE
 	 * <P> POST: The cost field is set to sum of the Pizzas's toppings
