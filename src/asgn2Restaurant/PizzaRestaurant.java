@@ -3,6 +3,7 @@ package asgn2Restaurant;
 import java.util.ArrayList;
 
 import asgn2Customers.Customer;
+import asgn2Exceptions.*;
 import asgn2Pizzas.Pizza;
 
 /**
@@ -32,7 +33,8 @@ public class PizzaRestaurant {
 	 * 
 	 */
 	public PizzaRestaurant() {
-		// TO DO
+		customers = new ArrayList<Customer>();
+		pizzas = new ArrayList<Pizza>();
 	}
 
 	/**
@@ -51,7 +53,23 @@ public class PizzaRestaurant {
      *
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
-		// TO DO
+		try{
+			for(int i = 0; i < LogHandler.populatePizzaDataset(filename).size(); i++){
+				LogHandler.createPizza(Integer.toString(i));
+			}
+			
+			for(int i = 0; i < LogHandler.populateCustomerDataset(filename).size(); i++){
+				LogHandler.createCustomer(Integer.toString(i));
+			}
+			
+			return true;
+			
+		}catch(Exception e){
+			System.out.println("The log file was unsucessfully processed!");
+			e.printStackTrace();
+			return false;
+		}
+	
 	}
 
 	/**
@@ -61,7 +79,11 @@ public class PizzaRestaurant {
 	 * @throws CustomerException if index is invalid.
 	 */
 	public Customer getCustomerByIndex(int index) throws CustomerException{
-		// TO DO
+		if (index < 0 || index > customers.size() - 1){
+			throw new CustomerException("The index value is invalid");
+		}
+		return customers.get(index);
+		
 	}
 	
 	/**
@@ -71,7 +93,10 @@ public class PizzaRestaurant {
 	 * @throws PizzaException if index is invalid.
 	 */	
 	public Pizza getPizzaByIndex(int index) throws PizzaException{
-		// TO DO
+		if (index < 0 || index > pizzas.size() - 1){
+			throw new PizzaException("The index value is invalid");
+		}
+		return pizzas.get(index);
 	}
 	
 	/**
@@ -81,7 +106,7 @@ public class PizzaRestaurant {
 	 * @return the number of objects contained in the pizzas field.
 	 */
 	public int getNumPizzaOrders(){
-		// TO DO
+		return pizzas.size();
 	}
 
 	/**
@@ -91,10 +116,9 @@ public class PizzaRestaurant {
 	 * @return the number of objects contained in the customers field.
 	 */
 	public int getNumCustomerOrders(){
-		// TO DO
+		return customers.size();
 	}
 
-			
 	
 	/**
 	 * Returns the total delivery distance for all of the customers.
