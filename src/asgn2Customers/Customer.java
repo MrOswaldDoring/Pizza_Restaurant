@@ -51,7 +51,7 @@ public abstract class Customer {
 			throw new CustomerException("Mobile numbers must 10 numbers long!");
 		}
 		if (firstDigitMob != 0){
-			throw new CustomerException("Mobile numbers must begin with a 0");
+			throw new CustomerException("Mobile numbers must begin with a 0!");
 		}
 		if (type.compareTo("Pick Up") != 0 && locationX == 0 && locationY == 0){
 			throw new CustomerException("The resaturant will no deliver to the restaurant!");
