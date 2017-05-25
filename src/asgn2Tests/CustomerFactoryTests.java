@@ -7,5 +7,6 @@ package asgn2Tests;
  *
  */
 public class CustomerFactoryTests {
-	// TO DO
+	// TO DO Testing commit work thingo doggo
+	//see if this is working 
 }
