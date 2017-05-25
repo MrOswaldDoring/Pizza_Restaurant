@@ -28,6 +28,15 @@ public class CustomerFactory {
 	 * @throws CustomerException if the customerCode is not one of the three valid codes listed in Section 5.3 of the Assignment Specification. 
 	 */
 	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
-		// TO DO
+		
+		if (customerCode.compareTo("PUC") != 0 && customerCode.compareTo("DNC") != 0 && customerCode.compareTo("DVC") != 0){
+			throw new CustomerException("Invalid order type entered!");
+		}else if (customerCode.compareTo("PUC") == 0){
+			return new PickUpCustomer(name, mobileNumber, locationX, locationY);
+		}else if (customerCode.compareTo("DNC") == 0){
+			return new DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
+		}else if (customerCode.compareTo("DVC") == 0){
+			return new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
+		}else {return null;}
 	}
 }
