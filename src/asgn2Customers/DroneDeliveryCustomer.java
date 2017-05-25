@@ -12,7 +12,9 @@ import asgn2Exceptions.CustomerException;
  */
 public class DroneDeliveryCustomer extends Customer {
 
-
+	private int locationX;
+	private int locationY;
+	
 	/**
 	 *  This class represents a customer of the Pizza Palace restaurant that has chosen to have their pizza delivered by 
 	 *  a drone.  A CustomerException is thrown if the any of the constraints listed in Section 5.2 of the Assignment
@@ -29,7 +31,33 @@ public class DroneDeliveryCustomer extends Customer {
 	 * 
 	 */
 	public DroneDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
-		// TO DO		
+		
+		super(name, mobileNumber, locationX, locationY, "Drone Delivery");
+		
+		int lenMobNum = Integer.valueOf(mobileNumber).toString().length();
+		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
+		
+		if (name.length() < 1 || name.length() > 20){
+			throw new CustomerException("Name is not valid, must be between 1 and 20 characters long!");
+		}
+		if (name.trim().length() == 0){
+			throw new CustomerException("Customer name does not contain any characters!");
+		}
+		if (lenMobNum != 10){
+			throw new CustomerException("Mobile numbers must 10 numbers long!");
+		}
+		if (firstDigitMob != 0){
+			throw new CustomerException("Mobile numbers must begin with a 0!");
+		}
+		if (locationX > 10 || locationX < -10 || locationY > 10 || locationY < -10){
+			throw new CustomerException("The delivery address is too far from the restaurant!");
+		}
+		if (locationX == 0 && locationY == 0){
+			throw new CustomerException("The restaurant cannot delivery to itself!");
+		}
+		
+		this.locationX = locationX;
+		this.locationY = locationY;
 	}
 
 	/**
@@ -40,7 +68,11 @@ public class DroneDeliveryCustomer extends Customer {
 	 */
 	@Override
 	public double getDeliveryDistance() {
-		// TO DO
+		double originX = 0;
+		double originY = 0;
+		double distX = Math.pow(locationX - originX, 2);
+		double distY = Math.pow(locationY - originY, 2);
+		return Math.sqrt(distX + distY);
 
 	}
 	
