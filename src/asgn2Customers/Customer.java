@@ -48,7 +48,7 @@ public abstract class Customer {
 			throw new CustomerException("Customer name does not contain any characters!");
 		}
 		if (lenMobNum != 10){
-			throw new CustomerException("Mobile number must 10 numbers long!");
+			throw new CustomerException("Mobile numbers must 10 numbers long!");
 		}
 		if (firstDigitMob != 0){
 			throw new CustomerException("Mobile numbers must begin with a 0");
