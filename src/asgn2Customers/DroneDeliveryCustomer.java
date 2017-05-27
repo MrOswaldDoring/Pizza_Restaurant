@@ -34,25 +34,20 @@ public class DroneDeliveryCustomer extends Customer {
 		
 		super(name, mobileNumber, locationX, locationY, "Drone Delivery");
 		
-		int lenMobNum = Integer.valueOf(mobileNumber).toString().length();
+		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
 		if (name.length() < 1 || name.length() > 20){
 			throw new CustomerException("Name is not valid, must be between 1 and 20 characters long!");
-		}
-		if (name.trim().length() == 0){
+		}else if (name.trim().length() == 0){
 			throw new CustomerException("Customer name does not contain any characters!");
-		}
-		if (lenMobNum != 10){
+		}else if (lenMobNum != 10){
 			throw new CustomerException("Mobile numbers must 10 numbers long!");
-		}
-		if (firstDigitMob != 0){
+		}else if (firstDigitMob != 0){
 			throw new CustomerException("Mobile numbers must begin with a 0!");
-		}
-		if (locationX > 10 || locationX < -10 || locationY > 10 || locationY < -10){
+		}else if (locationX > 10 || locationX < -10 || locationY > 10 || locationY < -10){
 			throw new CustomerException("The delivery address is too far from the restaurant!");
-		}
-		if (locationX == 0 && locationY == 0){
+		}else if (locationX == 0 && locationY == 0){
 			throw new CustomerException("The restaurant cannot delivery to itself!");
 		}
 		

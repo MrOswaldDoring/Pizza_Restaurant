@@ -17,7 +17,6 @@ public abstract class Customer {
 	private int locationX;
 	private int locationY;
 	private String type;
-	
 
 	/**
 	 *  This class represents a customer of the Pizza Palace restaurant.  A detailed description of the class's fields
@@ -38,25 +37,20 @@ public abstract class Customer {
 	 */
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
 		
-		int lenMobNum = Integer.valueOf(mobileNumber).toString().length();
+		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
 		if (name.length() < 1 || name.length() > 20){
 			throw new CustomerException("Name is not valid, must be between 1 and 20 characters long!");
-		}
-		if (name.trim().length() == 0){
+		} else if (name.trim().length() == 0){
 			throw new CustomerException("Customer name does not contain any characters!");
-		}
-		if (lenMobNum != 10){
-			throw new CustomerException("Mobile numbers must 10 numbers long!");
-		}
-		if (firstDigitMob != 0){
+		}else if (lenMobNum != 10){
+			throw new CustomerException("Mobile numbers must be 10 digits long!");
+		}else if (firstDigitMob != 0){
 			throw new CustomerException("Mobile numbers must begin with a 0!");
-		}
-		if (type.compareTo("Pick Up") != 0 && locationX == 0 && locationY == 0){
+		}else if (type.compareTo("Pick Up") != 0 && locationX == 0 && locationY == 0){
 			throw new CustomerException("The resaturant will no deliver to the restaurant!");
-		}
-		if (locationX > 10 || locationX < -10 || locationY > 10 || locationY < -10){
+		}else if (locationX > 10 || locationX < -10 || locationY > 10 || locationY < -10){
 			throw new CustomerException("The delivery address is too far from the restaurant!");
 		}
 		

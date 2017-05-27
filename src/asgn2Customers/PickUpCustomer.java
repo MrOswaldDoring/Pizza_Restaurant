@@ -30,19 +30,16 @@ public class PickUpCustomer extends Customer {
 		
 		super(name, mobileNumber, locationX, locationY, "Pick Up");
 		
-		int lenMobNum = Integer.valueOf(mobileNumber).toString().length();
+		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
 		if(name.length() < 1 || name.length() > 20){
 			throw new CustomerException("The customers name needs to be been 1 character and 20 characters long");
-		}
-		if(lenMobNum != 10){
-			throw new CustomerException("Mobile numbers must 10 numbers long!");
-		}
-		if(firstDigitMob != 0){
+		}else if(lenMobNum != 10){
+			throw new CustomerException("Mobile numbers must be 10 digits long");
+		}else if(firstDigitMob != 0){
 			throw new CustomerException("Mobile numbers must begin with a 0!");
-		}
-		if(locationX != 0 || locationY != 0){
+		}else if(locationX != 0 || locationY != 0){
 			throw new CustomerException("Customers location must be 0, 0 if it is a Pick Up!");
 		}
 		
