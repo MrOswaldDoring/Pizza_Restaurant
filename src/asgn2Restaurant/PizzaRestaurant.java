@@ -126,7 +126,11 @@ public class PizzaRestaurant {
 	 * @return the total delivery distance for all Customers objects in the customers field.
 	 */
 	public double getTotalDeliveryDistance(){
-		// TO DO
+		double deliveryDistanceTotal = 0;
+		for(Customer customer: customers){
+			deliveryDistanceTotal += customer.getDeliveryDistance();
+		}
+		return deliveryDistanceTotal;
 	}
 
 	/**
@@ -135,7 +139,11 @@ public class PizzaRestaurant {
 	 * @return the total profit for all of the Pizza objects in the pizzas field.
 	 */	
 	public double getTotalProfit(){
-		// TO DO
+		double orderProfitTotal = 0;
+		for(Pizza pizza: pizzas){
+			orderProfitTotal += pizza.getOrderProfit();
+		}
+		return orderProfitTotal;
 	}
 	
 	/**
@@ -145,7 +153,8 @@ public class PizzaRestaurant {
 	 * <P> POST:  The pizzas and customers fields are set to their initial empty states
 	 */
 	public void resetDetails(){
-		// TO DO
+		customers.clear();
+		pizzas.clear();
 	}
 
 }
