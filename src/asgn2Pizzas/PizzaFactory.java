@@ -9,12 +9,11 @@ import asgn2Exceptions.PizzaException;
  * The classes are instantiated from one of the three valid pizza codes outlined in
  * Section 5.3 of the Assignment Specification. Any other code will throw a PizzaException.      
  *  
- * @author Person A
+ * @author Jonny Hall - n9697985
  *
  */
 
 public class PizzaFactory {
-
 
 	/**
 	 * A method that uses the Factory Method pattern to produce an instance of one of the asgn2Pizzas.Pizza subclasses. 
@@ -29,7 +28,24 @@ public class PizzaFactory {
 	 * @return A valid Pizza object using the specified parameters 
 	 * */
 	public static Pizza getPizza(String pizzaCode, int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException{
-		// TO DO
+		
+		if(pizzaCode.compareTo(Pizza.margheritaShortFormat) != 0 && 
+				pizzaCode.compareTo(Pizza.meatLoversShortFormat) != 0 && 
+				pizzaCode.compareTo(Pizza.vegetarianShortFormat) != 0) {
+			throw new PizzaException("An invalid pizza code has been inputted!");
+		}
+		
+		if (pizzaCode.compareTo(Pizza.margheritaShortFormat) == 0){
+			MargheritaPizza pizza = new MargheritaPizza(quantity, orderTime, deliveryTime);
+			return pizza;
+		}else if (pizzaCode.compareTo(Pizza.meatLoversShortFormat) == 0){
+			MeatLoversPizza pizza = new MeatLoversPizza(quantity, orderTime, deliveryTime);
+			return pizza;
+		}else {
+			VegetarianPizza pizza = new VegetarianPizza(quantity, orderTime, deliveryTime);
+			return pizza;
+		}
+
 	}
 
 }
