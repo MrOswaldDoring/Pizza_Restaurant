@@ -18,7 +18,7 @@ import asgn2Pizzas.Pizza;
  * and Customer object - either as an individual Pizza/Customer object or as an
  * ArrayList of Pizza/Customer objects.
  * 
- * @author Person A and Oswald Doring n9451269
+ * @author Jonny Hall n9697985 and Oswald Doring n9451269
  *
  */
 public class LogHandler {
@@ -57,9 +57,22 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Pizza> populatePizzaDataset(String filename) throws PizzaException, LogHandlerException{
-		// TO DO
+		
 		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
-	}		
+		
+		try{
+			BufferedReader logFile = new BufferedReader(new FileReader(filename));
+			while (logFile.readLine() != null){
+				pizzaList.add(createPizza(logFile.readLine()));
+			}
+			logFile.close();
+		} catch (Exception e) {
+			System.out.print(e.getMessage());
+			e.printStackTrace();
+		}
+		
+		return pizzaList;
+	}				
 
 	
 	/**
@@ -99,7 +112,26 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
-		// TO DO		
+		Pizza pizzas;
+		String pizzaCode;
+		int quantity;
+		LocalTime orderTime = LocalTime.MIN; 
+		LocalTime deliveryTime = LocalTime.MIN;
+		
+		try{
+			String[] split = line.split(",");
+			orderTime.plusHours(Integer.parseInt(split[0].split(":")[0]));
+			orderTime.plusMinutes(Integer.parseInt(split[0].split(":")[1]));
+			deliveryTime.plusHours(Integer.parseInt(split[1].split(":")[0]));
+			deliveryTime.plusMinutes(Integer.parseInt(split[0].split(":")[1]));
+			pizzaCode = split[7];
+			quantity = Integer.parseInt(split[8]);
+			
+			return pizzas = PizzaFactory.getPizza(pizzaCode, quantity, orderTime, deliveryTime);
+			
+		}catch(Exception e){
+			throw new LogHandlerException("An error has occured when parsing the log file!");
+		}				
 	}
 
 }
