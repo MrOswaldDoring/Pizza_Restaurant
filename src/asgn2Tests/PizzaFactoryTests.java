@@ -33,22 +33,22 @@ public class PizzaFactoryTests {
 	
 	@Test
 	public void testMeatloversPizza() throws PizzaException{
-		LocalTime orderTime = LocalTime.of(17, 00);
-		LocalTime deliveryTime = LocalTime.of(17, 30);
+		LocalTime orderTime = LocalTime.of(20, 00);
+		LocalTime deliveryTime = LocalTime.of(20, 30);
 		PizzaFactory.getPizza("PZL", 5, orderTime, deliveryTime);
 	}
 	
 	@Test
 	public void testMargheritaPizza() throws PizzaException{
-		LocalTime orderTime = LocalTime.of(17, 00);
-		LocalTime deliveryTime = LocalTime.of(17, 30);
+		LocalTime orderTime = LocalTime.of(20, 00);
+		LocalTime deliveryTime = LocalTime.of(20, 30);
 		PizzaFactory.getPizza("PZM", 5, orderTime, deliveryTime);
 	}
 	
 	@Test
 	public void testVegoPizza() throws PizzaException{
-		LocalTime orderTime = LocalTime.of(17, 00);
-		LocalTime deliveryTime = LocalTime.of(17, 30);
+		LocalTime orderTime = LocalTime.of(20, 00);
+		LocalTime deliveryTime = LocalTime.of(20, 30);
 		PizzaFactory.getPizza("PZV", 5, orderTime, deliveryTime);
 	}
 }
