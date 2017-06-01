@@ -45,19 +45,14 @@ public class VegetarianPizza extends Pizza {
 			throw new PizzaException("The Kitchen has closed for the night!");
 		}else if (deliveryTime.isBefore(orderTime)){
 			throw new PizzaException("A pizza cannot be delivered before its ordered!");
-		}else if (orderTime.compareTo(deliveryTime) < 10){
+		}else if (deliveryTime.minusMinutes(11).isBefore(orderTime)){
 			throw new PizzaException("A pizza takes 10 minutes to cook!");
-		}else if (orderTime.compareTo(deliveryTime) > 60){
+		}else if (deliveryTime.minusHours(1).isAfter(orderTime.minusMinutes(1))){
 			throw new PizzaException("A pizza is thrown out after an hour");
 		}else if (orderTime == deliveryTime){
 			throw new PizzaException("Please allow 10 minutes for the pizza to cook!");
 		}
-		
-		pizzaToppings.add(PizzaTopping.CHEESE);
-		pizzaToppings.add(PizzaTopping.TOMATO);
-		pizzaToppings.add(PizzaTopping.EGGPLANT);
-		pizzaToppings.add(PizzaTopping.MUSHROOM);
-		pizzaToppings.add(PizzaTopping.CAPSICUM);
+
 	}
 
 }
