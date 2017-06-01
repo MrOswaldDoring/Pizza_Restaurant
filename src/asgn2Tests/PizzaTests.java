@@ -279,6 +279,7 @@ public class PizzaTests {
 		LocalTime deliveryTime = LocalTime.of(21, 00);
 		int quantity = 7;
 		meatLovers = new MeatLoversPizza(quantity, orderTime, deliveryTime);
+		meatLovers.calculateCostPerPizza();
 		assertEquals(5.00, meatLovers.getCostPerPizza(), 0);
 	} 
 	
@@ -297,6 +298,7 @@ public class PizzaTests {
 		LocalTime deliveryTime = LocalTime.of(21, 00);
 		int quantity = 7;
 		meatLovers = new MeatLoversPizza(quantity, orderTime, deliveryTime);
+		meatLovers.calculateCostPerPizza();
 		assertEquals(35.00, meatLovers.getOrderCost(), 0);
 	}
 	
@@ -306,6 +308,7 @@ public class PizzaTests {
 		LocalTime deliveryTime = LocalTime.of(21, 00);
 		int quantity = 7;
 		meatLovers = new MeatLoversPizza(quantity, orderTime, deliveryTime);
+		meatLovers.calculateCostPerPizza();
 		assertEquals(84.00, meatLovers.getOrderPrice(), 0);
 	}
 	
@@ -315,6 +318,7 @@ public class PizzaTests {
 		LocalTime deliveryTime = LocalTime.of(21, 00);
 		int quantity = 7;
 		meatLovers = new MeatLoversPizza(quantity, orderTime, deliveryTime);
+		meatLovers.calculateCostPerPizza();
 		assertEquals(49.00, meatLovers.getOrderProfit(), 0);
 	}
 	
