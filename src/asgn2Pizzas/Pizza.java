@@ -2,7 +2,6 @@ package asgn2Pizzas;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.List;
 
 import asgn2Exceptions.PizzaException;
 
@@ -33,19 +32,14 @@ public abstract class Pizza  {
 	protected static final LocalTime kitchenOpen = LocalTime.of(19, 00);
 	protected static final LocalTime kitchenClose = LocalTime.of(23, 00);
 	
-	protected static ArrayList<PizzaTopping> pizzaToppings = new ArrayList<PizzaTopping>();
+	private ArrayList<PizzaTopping> meatLoversToppings = new ArrayList<PizzaTopping>();
+	private ArrayList<PizzaTopping> vegetarianToppings = new ArrayList<PizzaTopping>();
+	private ArrayList<PizzaTopping> margheritaToppings = new ArrayList<PizzaTopping>();
 	
 	private int quantity;
-	private LocalTime orderTime;
-	private LocalTime deliveryTime;
 	private String type;
 	private double price;
 	private double costPerPizza;
-	private double totalOrderCost;
-	private double totalOrderPrice;
-	private double orderProfit;
-	
-	
 	/**
 	 *  This class represents a pizza produced at the Pizza Palace restaurant.  A detailed description of the class's fields
 	 *  and parameters is provided in the Assignment Specification, in particular in Section 5.1. 
@@ -64,12 +58,31 @@ public abstract class Pizza  {
 	 * 
 	 */
 	public Pizza(int quantity, LocalTime orderTime, LocalTime deliveryTime, String type, double price) throws PizzaException{
-		
+	
 		this.quantity = quantity;
-		this.orderTime = orderTime;
-		this.deliveryTime = deliveryTime;
 		this.type = type;
 		this.price = price;
+		
+		if(type.equals(meatloversHumanReadable)){
+			meatLoversToppings.add(PizzaTopping.TOMATO);
+			meatLoversToppings.add(PizzaTopping.CHEESE);
+			meatLoversToppings.add(PizzaTopping.BACON);
+			meatLoversToppings.add(PizzaTopping.SALAMI);
+			meatLoversToppings.add(PizzaTopping.PEPPERONI);
+		}
+		
+		if(type.equals(margheritaHumanReadable)){
+			margheritaToppings.add(PizzaTopping.CHEESE);
+			margheritaToppings.add(PizzaTopping.TOMATO);
+		}
+		
+		if(type.equals(vegetarianHumanReadable)){
+			vegetarianToppings.add(PizzaTopping.CHEESE);
+			vegetarianToppings.add(PizzaTopping.TOMATO);
+			vegetarianToppings.add(PizzaTopping.EGGPLANT);
+			vegetarianToppings.add(PizzaTopping.MUSHROOM);
+			vegetarianToppings.add(PizzaTopping.CAPSICUM);
+		}
 		
 	}
 
@@ -81,9 +94,22 @@ public abstract class Pizza  {
 	 */
 	public final void calculateCostPerPizza(){
 		
-		for(PizzaTopping toppings: pizzaToppings){
-			costPerPizza += toppings.getCost();
+		costPerPizza = 0;
+	
+		if(type.equals(margheritaHumanReadable)){
+			for(PizzaTopping toppings: margheritaToppings){
+				costPerPizza += (Double)toppings.getCost();
+			}
+		} else if(type.equals(meatloversHumanReadable)){
+			for(PizzaTopping toppings: meatLoversToppings){
+				costPerPizza += (Double)toppings.getCost();
+			}
+		} else if(type.equals(vegetarianHumanReadable)){
+			for(PizzaTopping toppings: vegetarianToppings){
+				costPerPizza += (Double)toppings.getCost();
+			}
 		}
+		
 	}
 	
 	/**
@@ -110,8 +136,7 @@ public abstract class Pizza  {
 	 */
 	public final double getOrderCost(){
 		
-		totalOrderCost = costPerPizza * quantity;
-		return totalOrderCost;
+		return this.getCostPerPizza() * quantity;
 	}
 	
 	/**
@@ -120,8 +145,7 @@ public abstract class Pizza  {
 	 */
 	public final double getOrderPrice(){
 		
-		totalOrderPrice = price * quantity;
-		return totalOrderPrice;
+		return price * quantity;
 	}
 	
 	
@@ -131,8 +155,7 @@ public abstract class Pizza  {
 	 */
 	public final double getOrderProfit(){
 		
-		orderProfit = totalOrderPrice - totalOrderCost;
-		return orderProfit;
+		return this.getOrderPrice() - this.getOrderCost();
 	}
 	
 
@@ -143,10 +166,12 @@ public abstract class Pizza  {
 	 */
 	public final boolean containsTopping(PizzaTopping topping){
 		
-		for(PizzaTopping toppings: pizzaToppings){
-			if(toppings == topping){
-				return true;
-			}
+		if(type.equals(margheritaHumanReadable)){
+			return margheritaToppings.contains(topping);
+		} else if(type.equals(meatloversHumanReadable)){
+			return meatLoversToppings.contains(topping);
+		} else if(type.equals(vegetarianHumanReadable)){
+			return vegetarianToppings.contains(topping);
 		} return false;
 	}
 	
