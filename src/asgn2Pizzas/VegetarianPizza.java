@@ -33,6 +33,7 @@ public class VegetarianPizza extends Pizza {
 	 */
 	public VegetarianPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
 		
+		/* Creating pizza superclass with vegetarian pizza */
 		super(quantity, orderTime, deliveryTime, Pizza.VEGETARIAN_PIZZA, Pizza.VEGETARIAN_SALE_PRICE);
 		
 		if (quantity > Pizza.MAX_PIZZA_QUANTITY){
