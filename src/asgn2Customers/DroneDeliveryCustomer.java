@@ -32,8 +32,10 @@ public class DroneDeliveryCustomer extends Customer {
 	 */
 	public DroneDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
 		
+		/* Creating instance of Customer super class with DroneDelivery details */
 		super(name, mobileNumber, locationX, locationY, Customer.DRONE_DELIVERY_CUSTOMER);
 		
+		/* Getting mobileNumber length and first number for exception testing */
 		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
@@ -63,10 +65,8 @@ public class DroneDeliveryCustomer extends Customer {
 	 */
 	@Override
 	public double getDeliveryDistance() {
-		double originX = 0;
-		double originY = 0;
-		double distX = Math.pow(locationX - originX, 2);
-		double distY = Math.pow(locationY - originY, 2);
+		double distX = Math.pow(locationX - Customer.RESTAURANT_X_COOORDINATE, 2);
+		double distY = Math.pow(locationY - Customer.RESTAURANT_Y_COORDINATE, 2);
 		return Math.sqrt(distX + distY);
 
 	}
