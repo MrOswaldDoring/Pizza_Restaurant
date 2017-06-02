@@ -33,6 +33,7 @@ public class MeatLoversPizza extends Pizza {
 	 */
 	public MeatLoversPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
 		
+		/* Creating pizza superclass with meatlovers pizza */
 		super(quantity, orderTime, deliveryTime, Pizza.MEATLOVERS_PIZZA, Pizza.MEATLOVERS_SALE_PRICE);
 		
 		if (quantity > Pizza.MAX_PIZZA_QUANTITY){
@@ -54,7 +55,5 @@ public class MeatLoversPizza extends Pizza {
 		}
 		
 	}
-	
-	
 
 }
