@@ -41,11 +41,11 @@ public class VegetarianPizza extends Pizza {
 			throw new PizzaException("No pizzas were added to the order!");
 		} else if (orderTime.isBefore(kitchenOpen)){
 			throw new PizzaException("The Kitchen is unable to take orders before 7pm!");
-		}else if (deliveryTime.isAfter(kitchenClose)){
+		}else if (orderTime.isAfter(kitchenClose)){
 			throw new PizzaException("The Kitchen has closed for the night!");
 		}else if (deliveryTime.isBefore(orderTime)){
 			throw new PizzaException("A pizza cannot be delivered before its ordered!");
-		}else if (deliveryTime.minusMinutes(11).isBefore(orderTime)){
+		}else if (deliveryTime.minusMinutes(10).isBefore(orderTime)){
 			throw new PizzaException("A pizza takes 10 minutes to cook!");
 		}else if (deliveryTime.minusHours(1).isAfter(orderTime.minusMinutes(1))){
 			throw new PizzaException("A pizza is thrown out after an hour");
