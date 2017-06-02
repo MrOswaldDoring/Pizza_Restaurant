@@ -17,6 +17,8 @@ import asgn2Exceptions.PizzaException;
  */
 public abstract class Pizza  {
 	
+	/* Creating constants to be used in subclasses */
+	
 	protected static final String MARGHERITA_PIZZA = "Margherita";
 	protected static final String MEATLOVERS_PIZZA = "Meat Lovers";
 	protected static final String VEGETARIAN_PIZZA = "Vegetarian";
@@ -32,6 +34,8 @@ public abstract class Pizza  {
 	
 	protected static final LocalTime KITCHEN_OPEN_TIME = LocalTime.of(19, 00);
 	protected static final LocalTime KITCHEN_CLOSE_TIME = LocalTime.of(23, 00);
+	
+	/* Private variables to use within this class */
 	
 	private ArrayList<PizzaTopping> meatLoversToppings = new ArrayList<PizzaTopping>();
 	private ArrayList<PizzaTopping> vegetarianToppings = new ArrayList<PizzaTopping>();
@@ -64,6 +68,7 @@ public abstract class Pizza  {
 		this.type = type;
 		this.price = price;
 		
+		/* Adding toppings to array based on pizza created */
 		if(type.equals(MEATLOVERS_PIZZA)){
 			meatLoversToppings.add(PizzaTopping.TOMATO);
 			meatLoversToppings.add(PizzaTopping.CHEESE);
@@ -217,6 +222,4 @@ public abstract class Pizza  {
 			(this.getPricePerPizza()) == (otherPizza.getPricePerPizza()) &&
 			(this.getQuantity()) == (otherPizza.getQuantity()));
 	}
-
-	
 }
