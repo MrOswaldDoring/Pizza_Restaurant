@@ -7,7 +7,7 @@ import asgn2Exceptions.*;
 import asgn2Pizzas.Pizza;
 
 /**
- * This class acts as a ‘model’ of a pizza restaurant. It contains an ArrayList of Pizza objects and an ArrayList of  Customer objects.
+ * This class acts as a â€˜modelâ€™ of a pizza restaurant. It contains an ArrayList of Pizza objects and an ArrayList of  Customer objects.
  *  It contains a method that can populate the ArrayLists,  several methods to retrieve information about the ArrayLists and 
  *  a method to reset the array list. Information about the x and y location of the restaurant and the time that first and last 
  *  orders are accepted are listed in Section 5 of the Assignment Specification. 
@@ -15,7 +15,7 @@ import asgn2Pizzas.Pizza;
  *  Any exceptions raised by one of the methods called by this class should be passed to asgn2GUIs.PizzaGUI so that it can be shown to
  *  the user.
  * 
- * @author Person A and Person B
+ * @author Jonny Hall n9697985 & Oswald Doring n9451269
  *
  */
 public class PizzaRestaurant {
@@ -54,13 +54,8 @@ public class PizzaRestaurant {
 	 */
 	public boolean processLog(String filename) throws CustomerException, PizzaException, LogHandlerException{
 		try{
-			for(int i = 0; i < LogHandler.populatePizzaDataset(filename).size(); i++){
-				LogHandler.createPizza(Integer.toString(i));
-			}
-			
-			for(int i = 0; i < LogHandler.populateCustomerDataset(filename).size(); i++){
-				LogHandler.createCustomer(Integer.toString(i));
-			}
+			customers = LogHandler.populateCustomerDataset(filename);
+			pizzas = LogHandler.populatePizzaDataset(filename);
 			
 			return true;
 			
@@ -139,8 +134,11 @@ public class PizzaRestaurant {
 	 * @return the total profit for all of the Pizza objects in the pizzas field.
 	 */	
 	public double getTotalProfit(){
+		
 		double orderProfitTotal = 0;
+	
 		for(Pizza pizza: pizzas){
+			pizza.calculateCostPerPizza();
 			orderProfitTotal += pizza.getOrderProfit();
 		}
 		return orderProfitTotal;
