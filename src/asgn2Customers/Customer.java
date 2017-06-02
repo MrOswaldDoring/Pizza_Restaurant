@@ -12,6 +12,13 @@ import asgn2Exceptions.CustomerException;
 */
 public abstract class Customer {
 	
+	protected static final String PICK_UP_CUSTOMER = "Pick Up";
+	protected static final String DELIVERY_DRIVER_CUSTOMER = "Driver Delivery";
+	protected static final String DRONE_DELIVERY_CUSTOMER = "Drone Delivery";
+	
+	protected static final int MAX_NAME_LENGTH = 20;
+	protected static final int MOBILE_LENGTH = 10;
+	
 	private String name;
 	private String mobileNumber;
 	private int locationX;
@@ -36,23 +43,6 @@ public abstract class Customer {
 	 * 
 	 */
 	public Customer(String name, String mobileNumber, int locationX, int locationY, String type) throws CustomerException{
-		
-		int lenMobNum = mobileNumber.length();
-		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
-		
-		if (name.length() < 1 || name.length() > 20){
-			throw new CustomerException("Name is not valid, must be between 1 and 20 characters long!");
-		} else if (name.trim().length() == 0){
-			throw new CustomerException("Customer name does not contain any characters!");
-		}else if (lenMobNum != 10){
-			throw new CustomerException("Mobile numbers must be 10 digits long!");
-		}else if (firstDigitMob != 0){
-			throw new CustomerException("Mobile numbers must begin with a 0!");
-		}else if (type.compareTo("Pick Up") != 0 && locationX == 0 && locationY == 0){
-			throw new CustomerException("The resaturant will no deliver to the restaurant!");
-		}else if (locationX > 10 || locationX < -10 || locationY > 10 || locationY < -10){
-			throw new CustomerException("The delivery address is too far from the restaurant!");
-		}
 		
 		this.name = name;
 		this.mobileNumber = mobileNumber;

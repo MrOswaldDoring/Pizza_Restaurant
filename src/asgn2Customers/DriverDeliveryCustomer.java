@@ -32,16 +32,16 @@ public class DriverDeliveryCustomer extends Customer {
 	 */
 	public DriverDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
 		
-		super(name, mobileNumber, locationX, locationY, "Driver Delivery");
+		super(name, mobileNumber, locationX, locationY, Customer.DELIVERY_DRIVER_CUSTOMER);
 		
 		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
-		if (name.length() < 1 || name.length() > 20){
+		if (name.length() < 1 || name.length() > Customer.MAX_NAME_LENGTH){
 			throw new CustomerException("Name is not valid, must be between 1 and 20 characters long!");
 		}else if (name.trim().length() == 0){
 			throw new CustomerException("Customer name does not contain any characters!");
-		}else if (lenMobNum != 10){
+		}else if (lenMobNum != Customer.MOBILE_LENGTH){
 			throw new CustomerException("Mobile numbers must 10 numbers long!");
 		}else if (firstDigitMob != 0){
 			throw new CustomerException("Mobile numbers must begin with a 0!");

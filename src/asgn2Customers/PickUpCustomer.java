@@ -28,14 +28,16 @@ public class PickUpCustomer extends Customer {
 	 */
 	public PickUpCustomer(String name, String mobileNumber, int locationX,  int locationY) throws CustomerException {
 		
-		super(name, mobileNumber, locationX, locationY, "Pick Up");
+		super(name, mobileNumber, locationX, locationY, Customer.PICK_UP_CUSTOMER);
 		
 		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
-		if(name.length() < 1 || name.length() > 20){
+		if(name.length() < 1 || name.length() > Customer.MAX_NAME_LENGTH){
 			throw new CustomerException("The customers name needs to be been 1 character and 20 characters long");
-		}else if(lenMobNum != 10){
+		}else if (name.trim().length() == 0){
+				throw new CustomerException("Customer name does not contain any characters!");
+		}else if(lenMobNum != Customer.MOBILE_LENGTH){
 			throw new CustomerException("Mobile numbers must be 10 digits long");
 		}else if(firstDigitMob != 0){
 			throw new CustomerException("Mobile numbers must begin with a 0!");
