@@ -29,13 +29,15 @@ public class CustomerFactory {
 	 */
 	public static Customer getCustomer(String customerCode, String name, String mobileNumber, int locationX,  int locationY) throws CustomerException{
 		
-		if (customerCode.compareTo("PUC") != 0 && customerCode.compareTo("DNC") != 0 && customerCode.compareTo("DVC") != 0){
+		if (customerCode.compareTo(Customer.PICK_UP_SHORT_FORMAT) != 0 && 
+				customerCode.compareTo(Customer.DELIVERY_DRIVER_SHORT_FORMAT) != 0 && 
+				customerCode.compareTo(Customer.DRONE_DELIVERY_SHORT_FORMAT) != 0){
 			throw new CustomerException("Invalid order type entered!");
-		}else if (customerCode.compareTo("PUC") == 0){
+		}else if (customerCode.compareTo(Customer.PICK_UP_SHORT_FORMAT) == 0){
 			return new PickUpCustomer(name, mobileNumber, locationX, locationY);
-		}else if (customerCode.compareTo("DNC") == 0){
+		}else if (customerCode.compareTo(Customer.DRONE_DELIVERY_SHORT_FORMAT) == 0){
 			return new DroneDeliveryCustomer(name, mobileNumber, locationX, locationY);
-		}else if (customerCode.compareTo("DVC") == 0){
+		}else if (customerCode.compareTo(Customer.DELIVERY_DRIVER_SHORT_FORMAT) == 0){
 			return new DriverDeliveryCustomer(name, mobileNumber, locationX, locationY);
 		}else {return null;}
 	}

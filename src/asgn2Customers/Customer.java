@@ -16,6 +16,10 @@ public abstract class Customer {
 	protected static final String DELIVERY_DRIVER_CUSTOMER = "Driver Delivery";
 	protected static final String DRONE_DELIVERY_CUSTOMER = "Drone Delivery";
 	
+	protected static final String PICK_UP_SHORT_FORMAT = "PUC";
+	protected static final String DELIVERY_DRIVER_SHORT_FORMAT = "DVC";
+	protected static final String DRONE_DELIVERY_SHORT_FORMAT = "DNC";
+	
 	protected static final int MAX_NAME_LENGTH = 20;
 	protected static final int MOBILE_LENGTH = 10;
 	
