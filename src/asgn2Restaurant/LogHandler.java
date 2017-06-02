@@ -1,9 +1,11 @@
 package asgn2Restaurant;
 
 
-import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
+import java.time.LocalTime;
+import java.util.ArrayList;
 
 import asgn2Customers.Customer;
 import asgn2Customers.CustomerFactory;
@@ -11,6 +13,7 @@ import asgn2Exceptions.CustomerException;
 import asgn2Exceptions.LogHandlerException;
 import asgn2Exceptions.PizzaException;
 import asgn2Pizzas.Pizza;
+import asgn2Pizzas.PizzaFactory;
 
 /**
  *
@@ -32,20 +35,30 @@ public class LogHandler {
 	 * 
 	 */
 	public static ArrayList<Customer> populateCustomerDataset(String filename) throws CustomerException, LogHandlerException{
+		
 		ArrayList<Customer> customerList = new ArrayList<Customer>();
+		BufferedReader logFile;
 		
 		try{
-			BufferedReader logFile = new BufferedReader(new FileReader(filename));
-			while (logFile.readLine() != null){
-				customerList.add(createCustomer(logFile.readLine()));
-			}
-			logFile.close();
+			logFile = new BufferedReader(new FileReader(filename));
 		} catch (Exception e) {
-			System.out.print(e.getMessage());
+			throw new LogHandlerException("Error with log file!");
+		}
+		
+		try{
+			String x = logFile.readLine();
+			while(x != null){
+				customerList.add(createCustomer(x));
+				x = logFile.readLine();
+			}
+		logFile.close();
+		}catch(Exception e){
 			e.printStackTrace();
+			System.out.print(e.getMessage());
 		}
 		
 		return customerList;
+	
 	}		
 
 	/**
@@ -59,16 +72,24 @@ public class LogHandler {
 	public static ArrayList<Pizza> populatePizzaDataset(String filename) throws PizzaException, LogHandlerException{
 		
 		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
+		BufferedReader logFile;
 		
 		try{
-			BufferedReader logFile = new BufferedReader(new FileReader(filename));
-			while (logFile.readLine() != null){
-				pizzaList.add(createPizza(logFile.readLine()));
-			}
-			logFile.close();
+			logFile = new BufferedReader(new FileReader(filename));
 		} catch (Exception e) {
-			System.out.print(e.getMessage());
+			throw new LogHandlerException("Error with log file!");
+		}
+		
+		try{
+			String x = logFile.readLine();
+			while(x != null){
+				pizzaList.add(createPizza(x));
+				x = logFile.readLine();
+			}
+		logFile.close();
+		}catch(Exception e){
 			e.printStackTrace();
+			System.out.print(e.getMessage());
 		}
 		
 		return pizzaList;
@@ -84,24 +105,30 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Customer createCustomer(String line) throws CustomerException, LogHandlerException{
-		Customer customerInfo;
+		
 		String customerCode, name, mobileNumber;
 		int locationX, locationY;
 		
-		try{
-			String[] split = line.split(",");
-			name = split[2];
-			mobileNumber = split[3];
-			customerCode = split[4];
-			locationX = Integer.parseInt(split[5]);
-			locationY = Integer.parseInt(split[6]);
-			
-			customerInfo = CustomerFactory.getCustomer(customerCode, name, mobileNumber, locationX, locationY);
-			return customerInfo;
-		}catch(Exception e){
-			throw new LogHandlerException("An error has occured when parsing the log file!");
+		String[] customerLog = line.split(",");
+		if(customerLog.length != 9){
+			throw new LogHandlerException("Insufficient data in the line to process!");
 		}
+		
+		try{
+			locationX = Integer.parseInt(customerLog[5]);
+			locationY = Integer.parseInt(customerLog[6]);
+		}catch (Exception e){
+			throw new LogHandlerException("Error with processing customers location!");
+		}
+		
+		name = customerLog[2];
+		mobileNumber = customerLog[3];
+		customerCode = customerLog[4];
+		
+		return CustomerFactory.getCustomer(customerCode, name, mobileNumber, locationX, locationY);
+							
 	}
+
 	
 	/**
 	 * Creates a Pizza object by parsing the information contained in a single line of the log file. The format of 
@@ -112,26 +139,31 @@ public class LogHandler {
 	 * @throws LogHandlerException - If there was a problem parsing the line from the log file.
 	 */
 	public static Pizza createPizza(String line) throws PizzaException, LogHandlerException{
-		Pizza pizzas;
+		
 		String pizzaCode;
 		int quantity;
-		LocalTime orderTime = LocalTime.MIN; 
-		LocalTime deliveryTime = LocalTime.MIN;
+		LocalTime orderTime, deliveryTime;
 		
+		String[] pizzaLog = line.split(",");
+		/*if(pizzaLog.length != 9){
+			throw new LogHandlerException("Insufficient data in the line to process!");
+		}
+		*/
 		try{
-			String[] split = line.split(",");
-			orderTime.plusHours(Integer.parseInt(split[0].split(":")[0]));
-			orderTime.plusMinutes(Integer.parseInt(split[0].split(":")[1]));
-			deliveryTime.plusHours(Integer.parseInt(split[1].split(":")[0]));
-			deliveryTime.plusMinutes(Integer.parseInt(split[0].split(":")[1]));
-			pizzaCode = split[7];
-			quantity = Integer.parseInt(split[8]);
-			
-			return pizzas = PizzaFactory.getPizza(pizzaCode, quantity, orderTime, deliveryTime);
-			
-		}catch(Exception e){
-			throw new LogHandlerException("An error has occured when parsing the log file!");
-		}				
+			orderTime = LocalTime.parse(pizzaLog[0]);
+			deliveryTime = LocalTime.parse(pizzaLog[1]);
+		}catch (Exception e){
+			throw new LogHandlerException("Error with processing order and delivery times!");
+		}
+		pizzaCode = pizzaLog[7];
+		try{
+			quantity = Integer.parseInt(pizzaLog[8]);
+		}catch (Exception e){
+			throw new LogHandlerException("Error with processing quantity!");
+		}
+		
+		return PizzaFactory.getPizza(pizzaCode, quantity, orderTime, deliveryTime);
+							
 	}
 
 }
