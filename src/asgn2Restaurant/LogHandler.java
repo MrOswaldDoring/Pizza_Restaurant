@@ -39,12 +39,14 @@ public class LogHandler {
 		ArrayList<Customer> customerList = new ArrayList<Customer>();
 		BufferedReader logFile;
 		
+		/* Tries to read the log file, error if BufferedRader cannot read file */
 		try{
 			logFile = new BufferedReader(new FileReader(filename));
 		} catch (Exception e) {
 			throw new LogHandlerException("Error with log file!");
 		}
 		
+		/* Tries to read each individual line in log file, fails if error creating customer from line */
 		try{
 			String x = logFile.readLine();
 			while(x != null){
@@ -74,12 +76,14 @@ public class LogHandler {
 		ArrayList<Pizza> pizzaList = new ArrayList<Pizza>();
 		BufferedReader logFile;
 		
+		/* Tries to read the log file, error if BufferedRader cannot read file */
 		try{
 			logFile = new BufferedReader(new FileReader(filename));
 		} catch (Exception e) {
 			throw new LogHandlerException("Error with log file!");
 		}
 		
+		/* Tries to read each individual line in log file, fails if error creating pizza from line */
 		try{
 			String x = logFile.readLine();
 			while(x != null){
@@ -110,10 +114,11 @@ public class LogHandler {
 		int locationX, locationY;
 		
 		String[] customerLog = line.split(",");
+		/* Checks if their is 9 objects in line */
 		if(customerLog.length != 9){
 			throw new LogHandlerException("Insufficient data in the line to process!");
 		}
-		
+		/* Tries to parse data then create customer, fails if error in log lines */
 		try{
 			locationX = Integer.parseInt(customerLog[5]);
 			locationY = Integer.parseInt(customerLog[6]);
@@ -145,10 +150,12 @@ public class LogHandler {
 		LocalTime orderTime, deliveryTime;
 		
 		String[] pizzaLog = line.split(",");
-		/*if(pizzaLog.length != 9){
+		/* Checks if their is 9 objects in line */
+		if(pizzaLog.length != 9){
 			throw new LogHandlerException("Insufficient data in the line to process!");
 		}
-		*/
+		
+		/* Tries to parse data then create pizza, fails if error in log lines */
 		try{
 			orderTime = LocalTime.parse(pizzaLog[0]);
 			deliveryTime = LocalTime.parse(pizzaLog[1]);
