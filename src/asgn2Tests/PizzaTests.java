@@ -28,7 +28,7 @@ public class PizzaTests {
 	//MargheitaPizza class exception testing
 	
 	@Test(expected = PizzaException.class)
-	public void marghertiaException1() throws PizzaException{
+	public void marghertiaException01() throws PizzaException{
 		LocalTime orderTime = LocalTime.of(20, 30);
 		LocalTime deliveryTime = LocalTime.of(21, 00);
 		int quantity = 0;
@@ -69,8 +69,8 @@ public class PizzaTests {
 	
 	@Test(expected = PizzaException.class)
 	public void margheritaException6() throws PizzaException{
-		LocalTime orderTime = LocalTime.of(22, 45);
-		LocalTime deliveryTime = LocalTime.of(23, 15);
+		LocalTime orderTime = LocalTime.of(23, 15);
+		LocalTime deliveryTime = LocalTime.of(23, 45);
 		int quantity = 5;
 		margherita = new MargheritaPizza(quantity, orderTime, deliveryTime);
 	}
@@ -143,7 +143,7 @@ public class PizzaTests {
 	
 	@Test(expected = PizzaException.class)
 	public void vegetarianException6() throws PizzaException{
-		LocalTime orderTime = LocalTime.of(22, 45);
+		LocalTime orderTime = LocalTime.of(23, 01);
 		LocalTime deliveryTime = LocalTime.of(23, 15);
 		int quantity = 5;
 		vegetarian = new VegetarianPizza(quantity, orderTime, deliveryTime);
@@ -217,8 +217,8 @@ public class PizzaTests {
 	
 	@Test(expected = PizzaException.class)
 	public void meatLoversException6() throws PizzaException{
-		LocalTime orderTime = LocalTime.of(22, 45);
-		LocalTime deliveryTime = LocalTime.of(23, 15);
+		LocalTime orderTime = LocalTime.of(23, 15);
+		LocalTime deliveryTime = LocalTime.of(23, 45);
 		int quantity = 5;
 		meatLovers = new MeatLoversPizza(quantity, orderTime, deliveryTime);
 	}
@@ -252,8 +252,16 @@ public class PizzaTests {
 	@Test
 	public void margheritaPizza() throws PizzaException{
 		LocalTime orderTime = LocalTime.of(20, 45);
-		LocalTime deliveryTime = LocalTime.of(21, 15);
+		LocalTime deliveryTime = LocalTime.of(20, 55);
 		int quantity = 5;
+		margherita = new MargheritaPizza(quantity, orderTime, deliveryTime);
+	}
+	
+	@Test
+	public void margeheritaPizza2() throws PizzaException{
+		LocalTime orderTime = LocalTime.of(20, 55);
+		LocalTime deliveryTime = LocalTime.of(21, 05);
+		int quantity = 3;
 		margherita = new MargheritaPizza(quantity, orderTime, deliveryTime);
 	}
 	
