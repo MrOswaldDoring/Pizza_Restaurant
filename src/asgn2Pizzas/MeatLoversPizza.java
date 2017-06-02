@@ -33,15 +33,15 @@ public class MeatLoversPizza extends Pizza {
 	 */
 	public MeatLoversPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
 		
-		super(quantity, orderTime, deliveryTime, Pizza.meatloversHumanReadable, Pizza.meatLoversSalePrice);
+		super(quantity, orderTime, deliveryTime, Pizza.MEATLOVERS_PIZZA, Pizza.MEATLOVERS_SALE_PRICE);
 		
-		if (quantity > 10){
+		if (quantity > Pizza.MAX_PIZZA_QUANTITY){
 			throw new PizzaException("A maximum of 10 pizzas are allowed per order!");
 		} else if (quantity < 1){
 			throw new PizzaException("No pizzas were added to the order!");
-		} else if (orderTime.isBefore(kitchenOpen)){
+		} else if (orderTime.isBefore(KITCHEN_OPEN_TIME)){
 			throw new PizzaException("The Kitchen is unable to take orders before 7pm!");
-		}else if (orderTime.isAfter(kitchenClose)){
+		}else if (orderTime.isAfter(KITCHEN_CLOSE_TIME)){
 			throw new PizzaException("The Kitchen has closed for the night!");
 		}else if (deliveryTime.isBefore(orderTime)){
 			throw new PizzaException("A pizza cannot be delivered before its ordered!");

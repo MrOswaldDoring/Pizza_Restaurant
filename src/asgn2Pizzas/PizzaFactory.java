@@ -29,21 +29,18 @@ public class PizzaFactory {
 	 * */
 	public static Pizza getPizza(String pizzaCode, int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException{
 		
-		if(pizzaCode.compareTo(Pizza.margheritaShortFormat) != 0 && 
-				pizzaCode.compareTo(Pizza.meatLoversShortFormat) != 0 && 
-				pizzaCode.compareTo(Pizza.vegetarianShortFormat) != 0) {
+		if(pizzaCode.compareTo(Pizza.MARGHERITA_PIZZA_SHORT) != 0 && 
+				pizzaCode.compareTo(Pizza.MEATLOVERS_PIZZA_SHORT) != 0 && 
+				pizzaCode.compareTo(Pizza.VEGETARIAN_PIZZA_SHORT) != 0) {
 			throw new PizzaException("An invalid pizza code has been inputted!");
 		}
 		
-		if (pizzaCode.compareTo(Pizza.margheritaShortFormat) == 0){
-			MargheritaPizza pizza = new MargheritaPizza(quantity, orderTime, deliveryTime);
-			return pizza;
-		}else if (pizzaCode.compareTo(Pizza.meatLoversShortFormat) == 0){
-			MeatLoversPizza pizza = new MeatLoversPizza(quantity, orderTime, deliveryTime);
-			return pizza;
+		if (pizzaCode.compareTo(Pizza.MARGHERITA_PIZZA_SHORT) == 0){
+			return new MargheritaPizza(quantity, orderTime, deliveryTime);
+		}else if (pizzaCode.compareTo(Pizza.MEATLOVERS_PIZZA_SHORT) == 0){
+			return new MeatLoversPizza(quantity, orderTime, deliveryTime);
 		}else {
-			VegetarianPizza pizza = new VegetarianPizza(quantity, orderTime, deliveryTime);
-			return pizza;
+			return new VegetarianPizza(quantity, orderTime, deliveryTime);
 		}
 
 	}

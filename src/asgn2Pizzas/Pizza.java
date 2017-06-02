@@ -17,20 +17,21 @@ import asgn2Exceptions.PizzaException;
  */
 public abstract class Pizza  {
 	
-	protected static final String margheritaHumanReadable = "Margherita";
-	protected static final String meatloversHumanReadable = "Meat Lovers";
-	protected static final String vegetarianHumanReadable = "Vegetarian";
+	protected static final String MARGHERITA_PIZZA = "Margherita";
+	protected static final String MEATLOVERS_PIZZA = "Meat Lovers";
+	protected static final String VEGETARIAN_PIZZA = "Vegetarian";
 	
-	protected static final String margheritaShortFormat = "PZM";
-	protected static final String meatLoversShortFormat = "PZL";
-	protected static final String vegetarianShortFormat = "PZV";
+	protected static final String MARGHERITA_PIZZA_SHORT = "PZM";
+	protected static final String MEATLOVERS_PIZZA_SHORT = "PZL";
+	protected static final String VEGETARIAN_PIZZA_SHORT = "PZV";
 	
-	protected static final int margheritaSalePrice = 8;
-	protected static final int meatLoversSalePrice = 12;
-	protected static final int vegetarianSalePrice = 10;
+	protected static final int MARGHERITA_SALE_PRICE = 8;
+	protected static final int MEATLOVERS_SALE_PRICE = 12;
+	protected static final int VEGETARIAN_SALE_PRICE = 10;
+	protected static final int MAX_PIZZA_QUANTITY = 10;
 	
-	protected static final LocalTime kitchenOpen = LocalTime.of(19, 00);
-	protected static final LocalTime kitchenClose = LocalTime.of(23, 00);
+	protected static final LocalTime KITCHEN_OPEN_TIME = LocalTime.of(19, 00);
+	protected static final LocalTime KITCHEN_CLOSE_TIME = LocalTime.of(23, 00);
 	
 	private ArrayList<PizzaTopping> meatLoversToppings = new ArrayList<PizzaTopping>();
 	private ArrayList<PizzaTopping> vegetarianToppings = new ArrayList<PizzaTopping>();
@@ -63,7 +64,7 @@ public abstract class Pizza  {
 		this.type = type;
 		this.price = price;
 		
-		if(type.equals(meatloversHumanReadable)){
+		if(type.equals(MEATLOVERS_PIZZA)){
 			meatLoversToppings.add(PizzaTopping.TOMATO);
 			meatLoversToppings.add(PizzaTopping.CHEESE);
 			meatLoversToppings.add(PizzaTopping.BACON);
@@ -71,12 +72,12 @@ public abstract class Pizza  {
 			meatLoversToppings.add(PizzaTopping.PEPPERONI);
 		}
 		
-		if(type.equals(margheritaHumanReadable)){
+		if(type.equals(MARGHERITA_PIZZA)){
 			margheritaToppings.add(PizzaTopping.CHEESE);
 			margheritaToppings.add(PizzaTopping.TOMATO);
 		}
 		
-		if(type.equals(vegetarianHumanReadable)){
+		if(type.equals(VEGETARIAN_PIZZA)){
 			vegetarianToppings.add(PizzaTopping.CHEESE);
 			vegetarianToppings.add(PizzaTopping.TOMATO);
 			vegetarianToppings.add(PizzaTopping.EGGPLANT);
@@ -96,15 +97,15 @@ public abstract class Pizza  {
 		
 		costPerPizza = 0;
 	
-		if(type.equals(margheritaHumanReadable)){
+		if(type.equals(MARGHERITA_PIZZA)){
 			for(PizzaTopping toppings: margheritaToppings){
 				costPerPizza += (Double)toppings.getCost();
 			}
-		} else if(type.equals(meatloversHumanReadable)){
+		} else if(type.equals(MEATLOVERS_PIZZA)){
 			for(PizzaTopping toppings: meatLoversToppings){
 				costPerPizza += (Double)toppings.getCost();
 			}
-		} else if(type.equals(vegetarianHumanReadable)){
+		} else if(type.equals(VEGETARIAN_PIZZA)){
 			for(PizzaTopping toppings: vegetarianToppings){
 				costPerPizza += (Double)toppings.getCost();
 			}
@@ -167,11 +168,11 @@ public abstract class Pizza  {
 	 */
 	public final boolean containsTopping(PizzaTopping topping){
 		
-		if(type.equals(margheritaHumanReadable)){
+		if(type.equals(MARGHERITA_PIZZA)){
 			return margheritaToppings.contains(topping);
-		} else if(type.equals(meatloversHumanReadable)){
+		} else if(type.equals(MEATLOVERS_PIZZA)){
 			return meatLoversToppings.contains(topping);
-		} else if(type.equals(vegetarianHumanReadable)){
+		} else if(type.equals(VEGETARIAN_PIZZA)){
 			return vegetarianToppings.contains(topping);
 		} return false;
 	}
