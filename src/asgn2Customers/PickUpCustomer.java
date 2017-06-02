@@ -28,8 +28,10 @@ public class PickUpCustomer extends Customer {
 	 */
 	public PickUpCustomer(String name, String mobileNumber, int locationX,  int locationY) throws CustomerException {
 		
+		/* Creating instance of Customer super class with PickUp details */
 		super(name, mobileNumber, locationX, locationY, Customer.PICK_UP_CUSTOMER);
 		
+		/* Getting mobileNumber length and first number for exception testing */
 		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
