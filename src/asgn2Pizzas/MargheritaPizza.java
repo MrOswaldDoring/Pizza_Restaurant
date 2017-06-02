@@ -37,6 +37,7 @@ public class MargheritaPizza extends Pizza {
 	 */
 	public MargheritaPizza(int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException {
 		
+		/* Creating pizza superclass with margherita pizza */
 		super(quantity, orderTime, deliveryTime, Pizza.MARGHERITA_PIZZA, Pizza.MARGHERITA_SALE_PRICE);
 		
 		if (quantity > Pizza.MAX_PIZZA_QUANTITY){
