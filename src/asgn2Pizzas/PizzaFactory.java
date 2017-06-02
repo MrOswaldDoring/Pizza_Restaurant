@@ -29,12 +29,14 @@ public class PizzaFactory {
 	 * */
 	public static Pizza getPizza(String pizzaCode, int quantity, LocalTime orderTime, LocalTime deliveryTime) throws PizzaException{
 		
+		/* See is pizzaCode is a valid one */
 		if(pizzaCode.compareTo(Pizza.MARGHERITA_PIZZA_SHORT) != 0 && 
 				pizzaCode.compareTo(Pizza.MEATLOVERS_PIZZA_SHORT) != 0 && 
 				pizzaCode.compareTo(Pizza.VEGETARIAN_PIZZA_SHORT) != 0) {
 			throw new PizzaException("An invalid pizza code has been inputted!");
 		}
 		
+		/* Creates pizza based on correct code */
 		if (pizzaCode.compareTo(Pizza.MARGHERITA_PIZZA_SHORT) == 0){
 			return new MargheritaPizza(quantity, orderTime, deliveryTime);
 		}else if (pizzaCode.compareTo(Pizza.MEATLOVERS_PIZZA_SHORT) == 0){
