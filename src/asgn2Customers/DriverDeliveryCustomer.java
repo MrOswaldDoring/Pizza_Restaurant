@@ -32,8 +32,10 @@ public class DriverDeliveryCustomer extends Customer {
 	 */
 	public DriverDeliveryCustomer(String name, String mobileNumber, int locationX, int locationY) throws CustomerException {
 		
+		/* Creating instance of Customer super class with DriverDelivery details */
 		super(name, mobileNumber, locationX, locationY, Customer.DELIVERY_DRIVER_CUSTOMER);
 		
+		/* Getting mobileNumber length and first number for exception testing */
 		int lenMobNum = mobileNumber.length();
 		int firstDigitMob = Integer.parseInt(mobileNumber.substring(0, 1));
 		
@@ -62,9 +64,9 @@ public class DriverDeliveryCustomer extends Customer {
 	 * @return The distance between the restaurant and the customer in Manhattan distance.
 	 */
 	@Override
-	public double getDeliveryDistance() {	
-		double xDistance = Math.abs(locationX);
-		double yDistance = Math.abs(locationY);
+	public double getDeliveryDistance() {
+		double xDistance = Math.abs(locationX - Customer.RESTAURANT_X_COOORDINATE);
+		double yDistance = Math.abs(locationY - Customer.RESTAURANT_Y_COORDINATE);
 		return xDistance + yDistance;
 		
 	}
