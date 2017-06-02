@@ -18,7 +18,7 @@ import asgn2Pizzas.PizzaFactory;
 public class PizzaFactoryTests {
 	
 	@Test(expected = PizzaException.class)
-	public void testIncorrectCode() throws PizzaException{
+	public void testIncorrectCode1() throws PizzaException{
 		LocalTime orderTime = LocalTime.of(17, 00);
 		LocalTime deliveryTime = LocalTime.of(17, 30);
 		PizzaFactory.getPizza("ERR", 1, orderTime, deliveryTime);
