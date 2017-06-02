@@ -12,6 +12,8 @@ import asgn2Exceptions.CustomerException;
 */
 public abstract class Customer {
 	
+	/* Creating constants to be used in Customer Subclasses */
+	
 	protected static final String PICK_UP_CUSTOMER = "Pick Up";
 	protected static final String DELIVERY_DRIVER_CUSTOMER = "Driver Delivery";
 	protected static final String DRONE_DELIVERY_CUSTOMER = "Drone Delivery";
@@ -20,8 +22,13 @@ public abstract class Customer {
 	protected static final String DELIVERY_DRIVER_SHORT_FORMAT = "DVC";
 	protected static final String DRONE_DELIVERY_SHORT_FORMAT = "DNC";
 	
+	protected static final double RESTAURANT_X_COOORDINATE = 0;
+	protected static final double RESTAURANT_Y_COORDINATE = 0;
+	
 	protected static final int MAX_NAME_LENGTH = 20;
 	protected static final int MOBILE_LENGTH = 10;
+	
+	/* Private variables to use within this class */
 	
 	private String name;
 	private String mobileNumber;
